@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		43AE44E927205D1C00AA7CD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE44E827205D1C00AA7CD3 /* AppDelegate.swift */; };
 		43AE44EB27205D1C00AA7CD3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE44EA27205D1C00AA7CD3 /* SceneDelegate.swift */; };
-		43AE44ED27205D1C00AA7CD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE44EC27205D1C00AA7CD3 /* ViewController.swift */; };
+		43AE44ED27205D1C00AA7CD3 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE44EC27205D1C00AA7CD3 /* ContactsViewController.swift */; };
 		43AE44F027205D1C00AA7CD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43AE44EE27205D1C00AA7CD3 /* Main.storyboard */; };
 		43AE44F227205D1D00AA7CD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43AE44F127205D1D00AA7CD3 /* Assets.xcassets */; };
 		43AE44F527205D1D00AA7CD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43AE44F327205D1D00AA7CD3 /* LaunchScreen.storyboard */; };
 		43AE450027205D1D00AA7CD3 /* iOS_ExamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE44FF27205D1D00AA7CD3 /* iOS_ExamTests.swift */; };
 		43AE450B27205D1D00AA7CD3 /* iOS_ExamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE450A27205D1D00AA7CD3 /* iOS_ExamUITests.swift */; };
+		43AE451D27205D8900AA7CD3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE451C27205D8900AA7CD3 /* UserModel.swift */; };
+		43AE453A2720724600AA7CD3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE45392720724600AA7CD3 /* MapViewController.swift */; };
+		43AE453F2720727B00AA7CD3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE453E2720727B00AA7CD3 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +41,7 @@
 		43AE44E527205D1C00AA7CD3 /* iOS Exam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Exam.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43AE44E827205D1C00AA7CD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43AE44EA27205D1C00AA7CD3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		43AE44EC27205D1C00AA7CD3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		43AE44EC27205D1C00AA7CD3 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		43AE44EF27205D1C00AA7CD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		43AE44F127205D1D00AA7CD3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43AE44F427205D1D00AA7CD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +52,9 @@
 		43AE450627205D1D00AA7CD3 /* iOS ExamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS ExamUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43AE450A27205D1D00AA7CD3 /* iOS_ExamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_ExamUITests.swift; sourceTree = "<group>"; };
 		43AE450C27205D1D00AA7CD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43AE451C27205D8900AA7CD3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		43AE45392720724600AA7CD3 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		43AE453E2720727B00AA7CD3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +105,13 @@
 		43AE44E727205D1C00AA7CD3 /* iOS Exam */ = {
 			isa = PBXGroup;
 			children = (
+				43AE451B27205D7100AA7CD3 /* Models */,
 				43AE44E827205D1C00AA7CD3 /* AppDelegate.swift */,
 				43AE44EA27205D1C00AA7CD3 /* SceneDelegate.swift */,
-				43AE44EC27205D1C00AA7CD3 /* ViewController.swift */,
-				43AE44EE27205D1C00AA7CD3 /* Main.storyboard */,
+				43AE452F2720605700AA7CD3 /* Controllers */,
 				43AE44F127205D1D00AA7CD3 /* Assets.xcassets */,
 				43AE44F327205D1D00AA7CD3 /* LaunchScreen.storyboard */,
+				43AE452E2720604D00AA7CD3 /* Views */,
 				43AE44F627205D1D00AA7CD3 /* Info.plist */,
 			);
 			path = "iOS Exam";
@@ -126,6 +133,32 @@
 				43AE450C27205D1D00AA7CD3 /* Info.plist */,
 			);
 			path = "iOS ExamUITests";
+			sourceTree = "<group>";
+		};
+		43AE451B27205D7100AA7CD3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				43AE451C27205D8900AA7CD3 /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		43AE452E2720604D00AA7CD3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				43AE44EE27205D1C00AA7CD3 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		43AE452F2720605700AA7CD3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				43AE44EC27205D1C00AA7CD3 /* ContactsViewController.swift */,
+				43AE45392720724600AA7CD3 /* MapViewController.swift */,
+				43AE453E2720727B00AA7CD3 /* SettingsViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +291,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43AE44ED27205D1C00AA7CD3 /* ViewController.swift in Sources */,
+				43AE44ED27205D1C00AA7CD3 /* ContactsViewController.swift in Sources */,
 				43AE44E927205D1C00AA7CD3 /* AppDelegate.swift in Sources */,
+				43AE451D27205D8900AA7CD3 /* UserModel.swift in Sources */,
+				43AE453A2720724600AA7CD3 /* MapViewController.swift in Sources */,
 				43AE44EB27205D1C00AA7CD3 /* SceneDelegate.swift in Sources */,
+				43AE453F2720727B00AA7CD3 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
