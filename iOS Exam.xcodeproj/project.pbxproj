@@ -7,10 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		433F30B02726F4D800659DDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433F30AF2726F4D800659DDD /* Main.storyboard */; };
+		433F30B12726F4D800659DDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433F30AF2726F4D800659DDD /* Main.storyboard */; };
+		433F30B22726F4D800659DDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433F30AF2726F4D800659DDD /* Main.storyboard */; };
+		433F30BA272708BD00659DDD /* AnyCodableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F30B9272708BD00659DDD /* AnyCodableValue.swift */; };
+		433F30BB272708BD00659DDD /* AnyCodableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F30B9272708BD00659DDD /* AnyCodableValue.swift */; };
+		433F30BC272708BD00659DDD /* AnyCodableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F30B9272708BD00659DDD /* AnyCodableValue.swift */; };
+		433F30C127270CB500659DDD /* SingleContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F30C027270CB500659DDD /* SingleContactViewController.swift */; };
+		433F30C227270CB500659DDD /* SingleContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F30C027270CB500659DDD /* SingleContactViewController.swift */; };
+		433F30C327270CB500659DDD /* SingleContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F30C027270CB500659DDD /* SingleContactViewController.swift */; };
+		433F30CC27275A5A00659DDD /* UserMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F30CB27275A5A00659DDD /* UserMarker.swift */; };
+		433F30CD27275A5A00659DDD /* UserMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F30CB27275A5A00659DDD /* UserMarker.swift */; };
+		433F30CE27275A5A00659DDD /* UserMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F30CB27275A5A00659DDD /* UserMarker.swift */; };
+		433F30D42727ED0000659DDD /* UserDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 433F30D22727ED0000659DDD /* UserDataModel.xcdatamodeld */; };
+		433F30D52727ED0000659DDD /* UserDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 433F30D22727ED0000659DDD /* UserDataModel.xcdatamodeld */; };
+		433F30D62727ED0000659DDD /* UserDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 433F30D22727ED0000659DDD /* UserDataModel.xcdatamodeld */; };
+		433F31112728073700659DDD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F31102728073700659DDD /* User.swift */; };
+		433F31122728073700659DDD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F31102728073700659DDD /* User.swift */; };
+		433F31132728073700659DDD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F31102728073700659DDD /* User.swift */; };
+		433F316C2729606400659DDD /* SingleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F316B2729606400659DDD /* SingleMapViewController.swift */; };
+		433F31712729718800659DDD /* EditUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F31702729718800659DDD /* EditUserViewController.swift */; };
+		433F317E2729926200659DDD /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F317D2729926200659DDD /* CustomPointAnnotation.swift */; };
+		433F31832729937A00659DDD /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F31822729937A00659DDD /* UserManager.swift */; };
+		433F3188272994C900659DDD /* ContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F3187272994C900659DDD /* ContactsCell.swift */; };
 		43AE44E927205D1C00AA7CD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE44E827205D1C00AA7CD3 /* AppDelegate.swift */; };
 		43AE44EB27205D1C00AA7CD3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE44EA27205D1C00AA7CD3 /* SceneDelegate.swift */; };
 		43AE44ED27205D1C00AA7CD3 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE44EC27205D1C00AA7CD3 /* ContactsViewController.swift */; };
-		43AE44F027205D1C00AA7CD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43AE44EE27205D1C00AA7CD3 /* Main.storyboard */; };
 		43AE44F227205D1D00AA7CD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43AE44F127205D1D00AA7CD3 /* Assets.xcassets */; };
 		43AE44F527205D1D00AA7CD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43AE44F327205D1D00AA7CD3 /* LaunchScreen.storyboard */; };
 		43AE450027205D1D00AA7CD3 /* iOS_ExamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE44FF27205D1D00AA7CD3 /* iOS_ExamTests.swift */; };
@@ -38,11 +60,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		433F30AF2726F4D800659DDD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = "../../../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/Main.storyboard"; sourceTree = "<group>"; };
+		433F30B9272708BD00659DDD /* AnyCodableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCodableValue.swift; sourceTree = "<group>"; };
+		433F30C027270CB500659DDD /* SingleContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleContactViewController.swift; sourceTree = "<group>"; };
+		433F30CB27275A5A00659DDD /* UserMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMarker.swift; sourceTree = "<group>"; };
+		433F30D32727ED0000659DDD /* UserDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserDataModel.xcdatamodel; sourceTree = "<group>"; };
+		433F31102728073700659DDD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		433F316B2729606400659DDD /* SingleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMapViewController.swift; sourceTree = "<group>"; };
+		433F31702729718800659DDD /* EditUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserViewController.swift; sourceTree = "<group>"; };
+		433F317D2729926200659DDD /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
+		433F31822729937A00659DDD /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		433F3187272994C900659DDD /* ContactsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCell.swift; sourceTree = "<group>"; };
 		43AE44E527205D1C00AA7CD3 /* iOS Exam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Exam.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43AE44E827205D1C00AA7CD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43AE44EA27205D1C00AA7CD3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		43AE44EC27205D1C00AA7CD3 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
-		43AE44EF27205D1C00AA7CD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		43AE44F127205D1D00AA7CD3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43AE44F427205D1D00AA7CD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43AE44F627205D1D00AA7CD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,6 +114,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		433F30C727275A3B00659DDD /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				433F30B9272708BD00659DDD /* AnyCodableValue.swift */,
+				433F30CB27275A5A00659DDD /* UserMarker.swift */,
+				433F317D2729926200659DDD /* CustomPointAnnotation.swift */,
+				433F3187272994C900659DDD /* ContactsCell.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 		43AE44DC27205D1C00AA7CD3 = {
 			isa = PBXGroup;
 			children = (
@@ -105,14 +148,14 @@
 		43AE44E727205D1C00AA7CD3 /* iOS Exam */ = {
 			isa = PBXGroup;
 			children = (
-				43AE451B27205D7100AA7CD3 /* Models */,
 				43AE44E827205D1C00AA7CD3 /* AppDelegate.swift */,
 				43AE44EA27205D1C00AA7CD3 /* SceneDelegate.swift */,
+				43AE451B27205D7100AA7CD3 /* Models */,
 				43AE452F2720605700AA7CD3 /* Controllers */,
 				43AE44F127205D1D00AA7CD3 /* Assets.xcassets */,
-				43AE44F327205D1D00AA7CD3 /* LaunchScreen.storyboard */,
 				43AE452E2720604D00AA7CD3 /* Views */,
 				43AE44F627205D1D00AA7CD3 /* Info.plist */,
+				433F30C727275A3B00659DDD /* utils */,
 			);
 			path = "iOS Exam";
 			sourceTree = "<group>";
@@ -139,6 +182,9 @@
 			isa = PBXGroup;
 			children = (
 				43AE451C27205D8900AA7CD3 /* UserModel.swift */,
+				433F30D22727ED0000659DDD /* UserDataModel.xcdatamodeld */,
+				433F31102728073700659DDD /* User.swift */,
+				433F31822729937A00659DDD /* UserManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -146,7 +192,8 @@
 		43AE452E2720604D00AA7CD3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				43AE44EE27205D1C00AA7CD3 /* Main.storyboard */,
+				43AE44F327205D1D00AA7CD3 /* LaunchScreen.storyboard */,
+				433F30AF2726F4D800659DDD /* Main.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -157,6 +204,9 @@
 				43AE44EC27205D1C00AA7CD3 /* ContactsViewController.swift */,
 				43AE45392720724600AA7CD3 /* MapViewController.swift */,
 				43AE453E2720727B00AA7CD3 /* SettingsViewController.swift */,
+				433F30C027270CB500659DDD /* SingleContactViewController.swift */,
+				433F316B2729606400659DDD /* SingleMapViewController.swift */,
+				433F31702729718800659DDD /* EditUserViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -264,9 +314,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				433F30B02726F4D800659DDD /* Main.storyboard in Resources */,
 				43AE44F527205D1D00AA7CD3 /* LaunchScreen.storyboard in Resources */,
 				43AE44F227205D1D00AA7CD3 /* Assets.xcassets in Resources */,
-				43AE44F027205D1C00AA7CD3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +324,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				433F30B12726F4D800659DDD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +332,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				433F30B22726F4D800659DDD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,12 +343,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				433F317E2729926200659DDD /* CustomPointAnnotation.swift in Sources */,
 				43AE44ED27205D1C00AA7CD3 /* ContactsViewController.swift in Sources */,
+				433F30CC27275A5A00659DDD /* UserMarker.swift in Sources */,
+				433F31832729937A00659DDD /* UserManager.swift in Sources */,
+				433F30D42727ED0000659DDD /* UserDataModel.xcdatamodeld in Sources */,
 				43AE44E927205D1C00AA7CD3 /* AppDelegate.swift in Sources */,
 				43AE451D27205D8900AA7CD3 /* UserModel.swift in Sources */,
+				433F30C127270CB500659DDD /* SingleContactViewController.swift in Sources */,
 				43AE453A2720724600AA7CD3 /* MapViewController.swift in Sources */,
 				43AE44EB27205D1C00AA7CD3 /* SceneDelegate.swift in Sources */,
+				433F30BA272708BD00659DDD /* AnyCodableValue.swift in Sources */,
 				43AE453F2720727B00AA7CD3 /* SettingsViewController.swift in Sources */,
+				433F3188272994C900659DDD /* ContactsCell.swift in Sources */,
+				433F31112728073700659DDD /* User.swift in Sources */,
+				433F31712729718800659DDD /* EditUserViewController.swift in Sources */,
+				433F316C2729606400659DDD /* SingleMapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +366,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				433F30CD27275A5A00659DDD /* UserMarker.swift in Sources */,
 				43AE450027205D1D00AA7CD3 /* iOS_ExamTests.swift in Sources */,
+				433F31122728073700659DDD /* User.swift in Sources */,
+				433F30D52727ED0000659DDD /* UserDataModel.xcdatamodeld in Sources */,
+				433F30C227270CB500659DDD /* SingleContactViewController.swift in Sources */,
+				433F30BB272708BD00659DDD /* AnyCodableValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,7 +379,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				433F30CE27275A5A00659DDD /* UserMarker.swift in Sources */,
 				43AE450B27205D1D00AA7CD3 /* iOS_ExamUITests.swift in Sources */,
+				433F31132728073700659DDD /* User.swift in Sources */,
+				433F30D62727ED0000659DDD /* UserDataModel.xcdatamodeld in Sources */,
+				433F30C327270CB500659DDD /* SingleContactViewController.swift in Sources */,
+				433F30BC272708BD00659DDD /* AnyCodableValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,14 +404,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		43AE44EE27205D1C00AA7CD3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				43AE44EF27205D1C00AA7CD3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		43AE44F327205D1D00AA7CD3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -623,6 +687,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		433F30D22727ED0000659DDD /* UserDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				433F30D32727ED0000659DDD /* UserDataModel.xcdatamodel */,
+			);
+			currentVersion = 433F30D32727ED0000659DDD /* UserDataModel.xcdatamodel */;
+			path = UserDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 43AE44DD27205D1C00AA7CD3 /* Project object */;
 }
