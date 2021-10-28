@@ -88,7 +88,7 @@ class ContactsViewController: UIViewController {
     }
 }
 
-//MARK: - Testing functions
+//MARK: - Testing functions !REMEMBER TO REMOVE!
 extension ContactsViewController {
     //TESTING CORE DATA!
     @IBAction func getDataPressed(_ sender: UIButton) {

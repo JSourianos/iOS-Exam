@@ -4,7 +4,6 @@ import UIKit
 class DeletedUserManager {
     let context: NSManagedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    //This should work?
     func insertDeletedUser(user: User) {
         do {
             let deletedUser = DeletedUser(context: self.context)

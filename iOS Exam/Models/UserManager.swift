@@ -90,8 +90,6 @@ class UserManager {
         return currentUser
     }
     
-    
-    
     //TODO: - We need to implement the second entity here, so we wont refetch the user from the API
     func deleteSingleUser(withId attribute: String) {
         let fetchRequest = NSFetchRequest<User>(entityName: "User")
@@ -182,7 +180,6 @@ class UserManager {
             
             //Error handling
             if let error = error {
-                //Here we could maybe use DispatchQueue to update the UI, letting the user know that there has been an error
                 print("An error has occured: \(error)" )
                 return
             }
@@ -204,31 +201,45 @@ class UserManager {
             
             //Results returned from the fetch
             results = json.results
+
+            var deletedUsers: [DeletedUser] = []
             
-            //Persist to CoreData
+            do {
+                deletedUsers = try self.context.fetch(DeletedUser.fetchRequest())
+            } catch {
+                print("Error fetching deleted users from fetchJson: \(error.localizedDescription)")
+            }
+
             for result in results {
-                //We just force unwrap, since the API does not return any null values and we already guard the response object incase something goes wrong.
-                let newUser = User(context: self.context)
                 
-                //Maybe this can be added in the init?
-                newUser.id = result.login.uuid
-                newUser.age = Int32(result.dob.age)
-                newUser.nameTitle = result.name.title
-                newUser.firstName = result.name.first
-                newUser.lastName = result.name.last
-                newUser.birthdate = result.dob.date // This needs to be converted to a Date!
-                newUser.cell = result.cell
-                newUser.city = result.location.city
-                newUser.email = result.email
-                newUser.gender = result.gender
-                newUser.latitude = result.location.coordinates.latitude
-                newUser.longitude = result.location.coordinates.longitude
-                newUser.nat = result.nat
-                newUser.phone = result.phone
-                newUser.pictureThumbnail = result.picture.thumbnail
-                newUser.state = result.location.state
-                newUser.streetName = result.location.street.name
-                newUser.streetNumber = String(result.location.street.number)
+                //Checking if our DeletedUser entity contains the userID from the API
+                if deletedUsers.contains(where: { $0.id == result.login.uuid }) {
+                    print("Deleted user detected.")
+                } else {
+    
+                    //We just force unwrap, since the API does not return any null values and we already guard the response object incase something goes wrong.
+                    let newUser = User(context: self.context)
+                    
+                    //Maybe this can be added in the init?
+                    newUser.id = result.login.uuid
+                    newUser.age = Int32(result.dob.age)
+                    newUser.nameTitle = result.name.title
+                    newUser.firstName = result.name.first
+                    newUser.lastName = result.name.last
+                    newUser.birthdate = result.dob.date // This needs to be converted to a Date!
+                    newUser.cell = result.cell
+                    newUser.city = result.location.city
+                    newUser.email = result.email
+                    newUser.gender = result.gender
+                    newUser.latitude = result.location.coordinates.latitude
+                    newUser.longitude = result.location.coordinates.longitude
+                    newUser.nat = result.nat
+                    newUser.phone = result.phone
+                    newUser.pictureThumbnail = result.picture.thumbnail
+                    newUser.state = result.location.state
+                    newUser.streetName = result.location.street.name
+                    newUser.streetNumber = String(result.location.street.number)
+                }
             }
             
             //Save outside the loop so we dont overwrite
