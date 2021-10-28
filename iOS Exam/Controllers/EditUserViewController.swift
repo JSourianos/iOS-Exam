@@ -43,11 +43,13 @@ class EditUserViewController: UIViewController {
         navigationController?.title = "Edit User"
     }
     
+    //TODO: - We can just save the age property, and WHEN the user changes his date, we calculate what age they are, and save this aswell.
     @IBAction func submitChangesPressed(_ sender: UIButton) {
         firstNameTextField.endEditing(true)
-
-        guard let phone = currentUser.phone else { return }
-        let updatedUser = userManager.editSingleUser(withAttribute: phone, user: currentUser, firstName: newFirstName, lastName: newLastName, email: newEmail, city: newCity, phone: newPhone)
+        
+        guard let id = currentUser.id else { return }
+        let updatedUser = userManager.editSingleUser(withAttribute: id, user: currentUser, firstName: newFirstName, lastName: newLastName, email: newEmail, city: newCity, phone: newPhone)
+        
         
         delegate?.updateCurrentUser(with: updatedUser)
         navigationController?.popViewController(animated: true)

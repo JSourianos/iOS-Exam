@@ -13,24 +13,34 @@ class ContactsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    let deletedUserManager = DeletedUserManager()
     let userManager = UserManager()
     var context: NSManagedObjectContext!
-
+    
     var fetchedResultsController: NSFetchedResultsController<User>!
     let url = "https://randomuser.me/api?results=100&seed=ios"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         context = userManager.getContext()
-
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ContactsCell.self, forCellReuseIdentifier: "cell")
         
         checkIfUsersExist()
-
+        
         navigationItem.title = "Kontakter"
+        
+        checkNumberOfTotalUsers() //REMEMBER TO REMOVE
+        deletedUserManager.fetchAllDeletedUsers() //REMEMBER TO REMOVE
+    }
+    
+    func checkNumberOfTotalUsers() {
+        let users: [User] = userManager.fetchAllUsers()
+        print("Number of users in the database: \(users.count)")
     }
     
     func loadSavedData() {
@@ -69,8 +79,7 @@ class ContactsViewController: UIViewController {
         //If there is zero or less items in the database, fetch results. If not, just reload the TableView
         if(tempUsers.count <= 0) {
             //Fetch API data when the app is loaded
-            userManager.fetchJSON(from: url)
-
+            userManager.fetchJsonAndUpdateDatabase(from: url)
         } else {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -88,7 +97,6 @@ extension ContactsViewController {
         } catch {
             print("Error persisting to core data: \(error.localizedDescription)")
         }
-        print(fetchedResultsController.sections?.count)
         
         for user in TESTARRAY {
             print(user.email!)
@@ -100,11 +108,15 @@ extension ContactsViewController {
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
         
+        let deleteFetch2 = NSFetchRequest<NSFetchRequestResult>(entityName: "DeletedUser")
+        let deleteRequest2 = NSBatchDeleteRequest(fetchRequest: deleteFetch2)
+        
         do {
             try context.execute(deleteRequest)
+            try context.execute(deleteRequest2)
+            
             try context.save()
             print("Data deleted.")
-
         } catch {
             print("Error deleting data: \(error.localizedDescription)")
         }
@@ -122,7 +134,7 @@ extension ContactsViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates()
+        self.tableView.beginUpdates()
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
@@ -142,10 +154,12 @@ extension ContactsViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
+        
+        self.tableView.endUpdates()
+        
     }
-    
 }
+
 //https://github.com/jrasmusson/swift-arcade/blob/master/CoreData/2-NSFetchedResultsController.md
 extension ContactsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -40,6 +40,8 @@
 		43AE453A2720724600AA7CD3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE45392720724600AA7CD3 /* MapViewController.swift */; };
 		43AE453F2720727B00AA7CD3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE453E2720727B00AA7CD3 /* SettingsViewController.swift */; };
 		43F446AE272A10D1004EDD78 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F446AD272A10D1004EDD78 /* UserManager.swift */; };
+		43F446B0272B0736004EDD78 /* DeletedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F446AF272B0736004EDD78 /* DeletedUser.swift */; };
+		43F446B2272B0769004EDD78 /* DeletedUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F446B1272B0769004EDD78 /* DeletedUserManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,8 @@
 		43AE45392720724600AA7CD3 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		43AE453E2720727B00AA7CD3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		43F446AD272A10D1004EDD78 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		43F446AF272B0736004EDD78 /* DeletedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedUser.swift; sourceTree = "<group>"; };
+		43F446B1272B0769004EDD78 /* DeletedUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedUserManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +189,8 @@
 				433F30D22727ED0000659DDD /* UserDataModel.xcdatamodeld */,
 				433F31102728073700659DDD /* User.swift */,
 				43F446AD272A10D1004EDD78 /* UserManager.swift */,
+				43F446AF272B0736004EDD78 /* DeletedUser.swift */,
+				43F446B1272B0769004EDD78 /* DeletedUserManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -347,6 +353,7 @@
 				43AE44ED27205D1C00AA7CD3 /* ContactsViewController.swift in Sources */,
 				433F30CC27275A5A00659DDD /* UserMarker.swift in Sources */,
 				433F30D42727ED0000659DDD /* UserDataModel.xcdatamodeld in Sources */,
+				43F446B2272B0769004EDD78 /* DeletedUserManager.swift in Sources */,
 				43AE44E927205D1C00AA7CD3 /* AppDelegate.swift in Sources */,
 				43AE451D27205D8900AA7CD3 /* UserModel.swift in Sources */,
 				43F446AE272A10D1004EDD78 /* UserManager.swift in Sources */,
@@ -359,6 +366,7 @@
 				433F31112728073700659DDD /* User.swift in Sources */,
 				433F31712729718800659DDD /* EditUserViewController.swift in Sources */,
 				433F316C2729606400659DDD /* SingleMapViewController.swift in Sources */,
+				43F446B0272B0736004EDD78 /* DeletedUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

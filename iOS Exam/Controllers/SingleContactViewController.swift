@@ -9,6 +9,8 @@ protocol UserDelegate {
 
 class SingleContactViewController: UIViewController, UserDelegate {
     let userManager = UserManager()
+    var deletedUserManager = DeletedUserManager()
+
     var currentUser = User()
     
     @IBOutlet weak var userImageView: UIImageView!
@@ -34,14 +36,17 @@ class SingleContactViewController: UIViewController, UserDelegate {
     }
     
     func populateLayout(with currentUser: User) {
-        if let phone = currentUser.phone {
-            self.currentUser = userManager.fetchCurrentUserData(attribute: phone)
+        if let id = currentUser.id {
+            print(id)
+            self.currentUser = userManager.fetchCurrentUserData(withId: id)
         } else {
             self.currentUser = User()
             print("No phone number??")
         }
         
         let fullName = "\(currentUser.firstName!) \(currentUser.lastName!)"
+        
+        let age: Int32 = currentUser.age //REMEMBER TO ADD!
         
         userImageView.imageFromUrl(with: currentUser.pictureThumbnail!)
         ageLabel.text = fullName
@@ -54,13 +59,15 @@ class SingleContactViewController: UIViewController, UserDelegate {
 
 //MARK: - Buttons
 extension SingleContactViewController {
-    @IBAction func deleteUserPressed(_ sender: UIButton) {
-        
-        let phone = currentUser.phone!
-        userManager.deleteSingleUser(phone)
-        print("User deleted")
-        
-        navigationController?.popToRootViewController(animated: true)
+    @IBAction func deleteUserPressed(_ sender: UIButton) {        
+        if let userId = currentUser.id {
+            deletedUserManager.insertDeletedUser(user: currentUser)
+
+            userManager.deleteSingleUser(withId: userId)
+            print("User deleted")
+            
+            navigationController?.popToRootViewController(animated: true)
+        }
     }
     
     @IBAction func showOnMapPressed(_ sender: UIButton) {

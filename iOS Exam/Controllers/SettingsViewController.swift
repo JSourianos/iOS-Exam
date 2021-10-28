@@ -6,54 +6,37 @@
 //
 
 import UIKit
+import CoreData
 
 class SettingsViewController: UIViewController {
 
     let userManager = UserManager()
+    var context: NSManagedObjectContext!
+    
     var url = "https://randomuser.me/api?results=100"
     var userSeed: String = ""
-    
     
     @IBOutlet weak var seedTextField: UITextField!
     @IBOutlet weak var rightBarButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.context = userManager.getContext()
+        
         navigationItem.title = "Settings"
     }
-    
     
     @IBAction func settingsSaveButtonPressed(_ sender: UIButton) {
         if let userInput = seedTextField.text {
             userSeed = userInput
+        } else {
+            userSeed = "android" //defaulting the value incase the user dont input anything
         }
 
         url = "https://randomuser.me/api?results=100&seed=\(userSeed)"
-        print("Saved pressed!")
         print("New seed: \(userSeed)")
-        
-        //updateSeed()
+                
+        userManager.deleteNonChangedUsers()
+        userManager.fetchJsonAndUpdateDatabase(from: url)
     }
-    // TODO: - Create Seed Change Functionality
-
-    /*
-    func updateSeed() {
-        print("seed updating...")
-        print("New URL: \(url) ")
-        
-        print("before fetching results")
-        let results: [Result] = userManager.fetchJSON(from: url)
-        print("after fetching results")
-        for result in results {
-            print("Does this even hit")
-            print(result.name.first)
-        }
-        //2. We then need to delete everyone in the Database which havent been changed (hasChanged = false)
-        //3. Then we need to fetch from API with the new url.
-        //4. We then need to update the tableView in ContactViewController (I think this will be updated automatically)
-
-    }
-     */
-    
 }
