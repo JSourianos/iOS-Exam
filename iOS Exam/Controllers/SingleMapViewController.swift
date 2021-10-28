@@ -12,27 +12,26 @@ class SingleMapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var singleMapView: MKMapView!
     var currentUser = User()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         singleMapView.delegate = self
         
-        //Set the initial location to the current users location
+        //User information
         let lat = Double(currentUser.latitude!)
         let lon = Double(currentUser.longitude!)
-        let initialLocation = CLLocationCoordinate2D(latitude: lat!, longitude: lon!)
-        
-        //userInformation
         let userName = "\(currentUser.firstName!) \(currentUser.lastName!)"
         let userInformation = "\(currentUser.city!), \(currentUser.state!)"
         
-        //Creating a custom annotation
+        let initialLocation = CLLocationCoordinate2D(latitude: lat!, longitude: lon!)
+
         createCustomAnnotation(imageName: currentUser.pictureThumbnail!, coordinates: CLLocationCoordinate2D(latitude: lat!, longitude: lon!), userName: userName, userInformation: userInformation, mapView: singleMapView)
             
-        //Setting start location
         singleMapView.setStartLocation(location: initialLocation, meters: 50000)
     }
     
+    //Maybe move this out?
     func createCustomAnnotation(imageName: String, coordinates: CLLocationCoordinate2D, userName: String, userInformation: String, mapView: MKMapView){
         let customAnnotation = CustomPointAnnotation()
         customAnnotation.pinCustomImageName = imageName

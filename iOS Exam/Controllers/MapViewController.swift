@@ -5,16 +5,15 @@ import MapKit
 class MapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet private var mapView: MKMapView!
-
-    //CoreData Context
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var coreDataUsers = [User]()
+    let userManager = UserManager()
+    var allUsers: [User]?
+    var annotations: [MKAnnotation] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchUsers() //fetch users from db
-        
+        displayUserMarkers()
+
         mapView.delegate = self
         mapView.mapType = MKMapType.standard
         
@@ -22,36 +21,39 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         let initialLocation = CLLocationCoordinate2D(latitude: 10.500000, longitude: -66.916664)
         mapView.setStartLocation(location: initialLocation, meters: 5000000)
         
-        displayUserMarkers()
-                
         navigationItem.title = "Map"
     }
     
-    func displayUserMarkers(){
-        for user in coreDataUsers {
-            //Convert our String locations to Double
-            let lat = Double(user.latitude!)!
-            let lon = Double(user.longitude!)!
-            let userName = "\(user.firstName!) \(user.lastName!)"
-            let userInformation = "\(user.city!), \(user.state!)"
-            
-            let customAnnotation = CustomPointAnnotation()
-            customAnnotation.pinCustomImageName = user.pictureThumbnail!
-            customAnnotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-            customAnnotation.title = userName
-            customAnnotation.subtitle = userInformation
-            
-            mapView.addAnnotation(customAnnotation)
-        }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        mapView.removeAnnotations(annotations)
+        displayUserMarkers()
     }
     
-    //Create a manager for this
-    func fetchUsers() {
-        do {
-            self.coreDataUsers = try context.fetch(User.fetchRequest())
-        } catch {
-            print("Error retrieveing data: \(error.localizedDescription)")
+    func displayUserMarkers(){
+        allUsers = userManager.fetchAllUsers()
+        self.annotations = [] //reset annotation array
+        
+        if let allUsers = allUsers {
+            for user in allUsers {
+                //Convert our String locations to Double
+                let lat = Double(user.latitude!)!
+                let lon = Double(user.longitude!)!
+                let userName = "\(user.firstName!) \(user.lastName!)"
+                let userInformation = "\(user.city!), \(user.state!)"
+                
+                lazy var customAnnotation = CustomPointAnnotation()
+                customAnnotation.pinCustomImageName = user.pictureThumbnail!
+                customAnnotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                customAnnotation.title = userName
+                customAnnotation.subtitle = userInformation
+                
+                annotations.append(customAnnotation)
+            }
         }
+        mapView.addAnnotations(annotations)
     }
 }
 

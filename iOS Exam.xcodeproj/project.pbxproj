@@ -28,7 +28,6 @@
 		433F316C2729606400659DDD /* SingleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F316B2729606400659DDD /* SingleMapViewController.swift */; };
 		433F31712729718800659DDD /* EditUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F31702729718800659DDD /* EditUserViewController.swift */; };
 		433F317E2729926200659DDD /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F317D2729926200659DDD /* CustomPointAnnotation.swift */; };
-		433F31832729937A00659DDD /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F31822729937A00659DDD /* UserManager.swift */; };
 		433F3188272994C900659DDD /* ContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F3187272994C900659DDD /* ContactsCell.swift */; };
 		43AE44E927205D1C00AA7CD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE44E827205D1C00AA7CD3 /* AppDelegate.swift */; };
 		43AE44EB27205D1C00AA7CD3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE44EA27205D1C00AA7CD3 /* SceneDelegate.swift */; };
@@ -40,6 +39,7 @@
 		43AE451D27205D8900AA7CD3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE451C27205D8900AA7CD3 /* UserModel.swift */; };
 		43AE453A2720724600AA7CD3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE45392720724600AA7CD3 /* MapViewController.swift */; };
 		43AE453F2720727B00AA7CD3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE453E2720727B00AA7CD3 /* SettingsViewController.swift */; };
+		43F446AE272A10D1004EDD78 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F446AD272A10D1004EDD78 /* UserManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +69,6 @@
 		433F316B2729606400659DDD /* SingleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMapViewController.swift; sourceTree = "<group>"; };
 		433F31702729718800659DDD /* EditUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserViewController.swift; sourceTree = "<group>"; };
 		433F317D2729926200659DDD /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
-		433F31822729937A00659DDD /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		433F3187272994C900659DDD /* ContactsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCell.swift; sourceTree = "<group>"; };
 		43AE44E527205D1C00AA7CD3 /* iOS Exam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Exam.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43AE44E827205D1C00AA7CD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +86,7 @@
 		43AE451C27205D8900AA7CD3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		43AE45392720724600AA7CD3 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		43AE453E2720727B00AA7CD3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		43F446AD272A10D1004EDD78 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,7 +184,7 @@
 				43AE451C27205D8900AA7CD3 /* UserModel.swift */,
 				433F30D22727ED0000659DDD /* UserDataModel.xcdatamodeld */,
 				433F31102728073700659DDD /* User.swift */,
-				433F31822729937A00659DDD /* UserManager.swift */,
+				43F446AD272A10D1004EDD78 /* UserManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -202,11 +202,11 @@
 			isa = PBXGroup;
 			children = (
 				43AE44EC27205D1C00AA7CD3 /* ContactsViewController.swift */,
-				43AE45392720724600AA7CD3 /* MapViewController.swift */,
-				43AE453E2720727B00AA7CD3 /* SettingsViewController.swift */,
 				433F30C027270CB500659DDD /* SingleContactViewController.swift */,
-				433F316B2729606400659DDD /* SingleMapViewController.swift */,
 				433F31702729718800659DDD /* EditUserViewController.swift */,
+				43AE45392720724600AA7CD3 /* MapViewController.swift */,
+				433F316B2729606400659DDD /* SingleMapViewController.swift */,
+				43AE453E2720727B00AA7CD3 /* SettingsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -346,10 +346,10 @@
 				433F317E2729926200659DDD /* CustomPointAnnotation.swift in Sources */,
 				43AE44ED27205D1C00AA7CD3 /* ContactsViewController.swift in Sources */,
 				433F30CC27275A5A00659DDD /* UserMarker.swift in Sources */,
-				433F31832729937A00659DDD /* UserManager.swift in Sources */,
 				433F30D42727ED0000659DDD /* UserDataModel.xcdatamodeld in Sources */,
 				43AE44E927205D1C00AA7CD3 /* AppDelegate.swift in Sources */,
 				43AE451D27205D8900AA7CD3 /* UserModel.swift in Sources */,
+				43F446AE272A10D1004EDD78 /* UserManager.swift in Sources */,
 				433F30C127270CB500659DDD /* SingleContactViewController.swift in Sources */,
 				43AE453A2720724600AA7CD3 /* MapViewController.swift in Sources */,
 				43AE44EB27205D1C00AA7CD3 /* SceneDelegate.swift in Sources */,

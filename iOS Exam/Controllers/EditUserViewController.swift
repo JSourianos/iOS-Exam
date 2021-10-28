@@ -6,36 +6,51 @@
 //
 
 import UIKit
+import CoreData
 
 class EditUserViewController: UIViewController {
-    var currentUser = User()
+    //You wont access this screen without receiving the currentUser, so we can force unwrap it (quite) safely.
+    var currentUser: User!
+    var userManager = UserManager()
     
+    var activeTextField: UITextField!
+    var delegate: UserDelegate?
     
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var cityTextField: UITextField!
+    @IBOutlet weak var phoneTextField: UITextField!
     
-    //This code runs when we press the submit changes button
-    @IBAction func submitChangesPressed(_ sender: UIButton) {
-        firstNameTextField.endEditing(true)
-        lastNameTextField.endEditing(true)
-        datePicker.endEditing(true)
-        emailTextField.endEditing(true)
-        
-        print(firstNameTextField.text ?? "")
-        print(lastNameTextField.text ?? "")
-        print(formatDate(date: datePicker.date))
-        print(emailTextField.text ?? "")
-        // do what you want to do with the string.
-    }
-    
+    var newFirstName: String?
+    var newLastName: String?
+    var newBirthdate: String?
+    var newEmail: String?
+    var newCity: String?
+    var newPhone: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //TextField delegates
         firstNameTextField.delegate = self
-        // Do any additional setup after loading the view.
+        lastNameTextField.delegate = self
+        emailTextField.delegate = self
+        cityTextField.delegate = self
+        phoneTextField.delegate = self
+        
+        navigationController?.title = "Edit User"
+    }
+    
+    @IBAction func submitChangesPressed(_ sender: UIButton) {
+        firstNameTextField.endEditing(true)
+
+        guard let phone = currentUser.phone else { return }
+        let updatedUser = userManager.editSingleUser(withAttribute: phone, user: currentUser, firstName: newFirstName, lastName: newLastName, email: newEmail, city: newCity, phone: newPhone)
+        
+        delegate?.updateCurrentUser(with: updatedUser)
+        navigationController?.popViewController(animated: true)
     }
     
     func formatDate(date: Date) -> String {
@@ -45,47 +60,68 @@ class EditUserViewController: UIViewController {
         
         return stringDate
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
 }
-//Not sure
+
+//this is still wonky
 extension EditUserViewController: UITextFieldDelegate {
-    //This is by pressing the enter or "go" field on the keyboard.
+    //https://rderik.com/blog/solutions-to-common-scenarios-when-using-uitextfield-on-ios/#handling-multiple-text-fields
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        firstNameTextField.endEditing(true) //Dismiss keyboard
-        print(firstNameTextField.text!)
-        return true
-    }
-    
-    //This wont allow the user to end typing if the string is empty
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        //If the text field is not empty, then we can reeturn true
-        if textField.text != "" {
-            return true
-        } else {
-            textField.placeholder = "Please enter a city"
-            return false
+        
+        //Normally you can just assign .endEditing and other stuff to the textField variable, but
+        //since I need to assign the values to seperate variables I decided to use a switch case to detect which TextField is activ
+        switch textField {
+        case firstNameTextField:
+            newFirstName = firstNameTextField.text!
+            firstNameTextField.endEditing(true)
+            
+        case lastNameTextField:
+            newLastName = lastNameTextField.text!
+            lastNameTextField.endEditing(true)
+            
+        case emailTextField:
+            newEmail = emailTextField.text!
+            emailTextField.endEditing(true)
+            
+        case cityTextField:
+            newCity = cityTextField.text!
+            cityTextField.endEditing(true)
+            
+        case phoneTextField:
+            newPhone = phoneTextField.text!
+            phoneTextField.endEditing(true)
+            
+        default:
+            break
         }
+        
+        return true
     }
     
     //This runs everytime the user presses or returns the value in the TextField
     func textFieldDidEndEditing(_ textField: UITextField) {
-        //We use an if let statement to turn the Optinal String into a defenite string, and we make sure that this will be correct.
-        if let testText = textField.text {
-            print(testText)
+        switch textField {
+        case firstNameTextField:
+            newFirstName = firstNameTextField.text!
+            firstNameTextField.endEditing(true)
+            
+        case lastNameTextField:
+            newLastName = lastNameTextField.text!
+            lastNameTextField.endEditing(true)
+            
+        case emailTextField:
+            newEmail = emailTextField.text!
+            emailTextField.endEditing(true)
+            
+        case cityTextField:
+            newCity = cityTextField.text!
+            cityTextField.endEditing(true)
+            
+        case phoneTextField:
+            newPhone = phoneTextField.text!
+            phoneTextField.endEditing(true)
+            
+        default:
+            break
         }
-        /*
-        //We want to search for the City here, before resetting the textField
-        firstNameTextField.text = ""
-         */
     }
 }
