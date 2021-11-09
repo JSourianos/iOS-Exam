@@ -92,9 +92,9 @@ extension MapViewController {
     //TODO: - Sjekk om vi heller skal ha all koden under her! Da loader hvertfall mappet først.
     
     /*
-    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
-        <#code#>
-    }
+     func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+     <#code#>
+     }
      */
     
     //What to happen when we click a annotation
@@ -130,5 +130,5 @@ extension DispatchQueue {
             }
         }
     }
-
+    
 }

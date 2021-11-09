@@ -2,13 +2,13 @@ import UIKit
 import CoreData
 //TODO: - TextFieldDelegate!
 class SettingsViewController: UIViewController {
-
+    
     let userManager = UserManager()
     var context: NSManagedObjectContext!
     
     var url = "https://randomuser.me/api?results=100"
     var userSeed: String = ""
-
+    
     @IBOutlet weak var seedTextField: UITextField!
     @IBOutlet weak var rightBarButton: UIBarButtonItem!
     
@@ -26,12 +26,14 @@ class SettingsViewController: UIViewController {
         } else {
             userSeed = "android" //defaulting the value incase the user dont input anything
         }
-                
+        
         url = "https://randomuser.me/api?results=100&seed=\(userSeed)&nat=no"
         print("New seed: \(userSeed)")
-                
+        
         userManager.deleteNonChangedUsers()
         userManager.fetchJsonAndUpdateDatabase(from: url)
+        
+        seedTextField.text = ""
     }
 }
 

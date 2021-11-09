@@ -147,12 +147,12 @@ class UserManager {
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "YYYY-MM-dd"
         let dateOfBirth = dateFormater.date(from: date)
-
+        
         let calender = Calendar.current
-
+        
         let dateComponent = calender.dateComponents([.year, .month, .day], from:
-        dateOfBirth!, to: Date())
-
+                                                        dateOfBirth!, to: Date())
+        
         return Int32(dateComponent.year!)
     }
     

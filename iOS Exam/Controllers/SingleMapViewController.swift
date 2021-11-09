@@ -7,7 +7,7 @@ class SingleMapViewController: UIViewController, MKMapViewDelegate {
     var userManager = UserManager()
     var currentUserId = ""
     var currentUser = User()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,9 +21,9 @@ class SingleMapViewController: UIViewController, MKMapViewDelegate {
         let userInformation = "\(currentUser.city!), \(currentUser.state!)"
         
         let initialLocation = CLLocationCoordinate2D(latitude: lat!, longitude: lon!)
-
+        
         createCustomAnnotation(imageName: currentUser.pictureThumbnail!, coordinates: CLLocationCoordinate2D(latitude: lat!, longitude: lon!), userName: userName, userInformation: userInformation, mapView: singleMapView)
-            
+        
         singleMapView.setStartLocation(location: initialLocation, meters: 50000)
         
         navigationItem.title = currentUser.firstName

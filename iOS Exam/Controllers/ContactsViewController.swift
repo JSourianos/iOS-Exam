@@ -123,7 +123,7 @@ extension ContactsViewController: UITableViewDataSource, UITableViewDelegate {
         let user = fetchedResultsController.object(at: indexPath)
         
         let fullName = "\(user.firstName ?? "nofirstname") \(user.lastName ?? "nolastname")"
-
+        
         cell.textLabel?.text = fullName
         let imageFromUrl = cell.imageView?.imageFromUrl(with: user.pictureThumbnail!)
         

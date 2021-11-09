@@ -1,5 +1,6 @@
 #  PG5601 - iOS Programmering
 ## av Thomas Jacobsen Sourianos
+### Kandidatnummer: 2031
 
 ### Kodereferanser:
 
@@ -17,3 +18,12 @@
 
 - https://gist.github.com/sajjadsarkoobi/9376dfee0f63e9da3483c1363dfa9078
 -- Brukte denne klassen, ettersom postcode verdien fra APIet kunne enten være en String eller Int. Det finnes nok en løsning på denne problemstillingen, men ettersom dette funket slik jeg ønsket valgte jeg å beholde denne custom koden skrevet av noen andre.
+
+- https://stackoverflow.com/questions/24056205/how-to-use-background-thread-in-swift?rq=1
+-- Brukte svaret på dette stackoverflow-spørsmålet til å kjøre image-fetching av annotations på en annen tråd, for å redusere lag på Main Thread ettersom mappet lagget veldig da man skulle fetche bilder i mens man scrollet over mappet.
+
+### Annet
+
+- Vedlagt på Wiseflow ligger versjon av Xcode og Swift, men legger det ved her også:
+-- Xcode versjon: Version 13.1 (13A1030d)
+-- Swift Language Version: Swift 5 

@@ -45,12 +45,12 @@ class EditUserViewController: UIViewController {
         
         navigationController?.title = "Edit User"
     }
-
+    
     @IBAction func submitChangesPressed(_ sender: UIButton) {
         firstNameTextField.endEditing(true) //check this out aswell
         
         guard let id = currentUser.id else { return }
-
+        
         let updatedUser = userManager.editSingleUser(withAttribute: id, user: currentUser, firstName: newFirstName, lastName: newLastName, birthDate: newBirthdate, email: newEmail, city: newCity, phone: newPhone)
         
         delegate?.updateCurrentUser(with: updatedUser)

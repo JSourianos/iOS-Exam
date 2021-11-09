@@ -66,16 +66,16 @@ class SingleContactViewController: UIViewController, UserDelegate {
 
 //MARK: - Birthday functions
 extension SingleContactViewController {
-        
+    
     func createRainingEmoji(with emoji: String){
         let randomXPosition = Double.random(in: 0...400)
         let randomDelay = Double.random(in: 0...1.5)
         let randomDuration = Double.random(in: 4...10)
-
+        
         let emojiLabel = UILabel.init(frame: CGRect(x: randomXPosition, y: -200, width: 200, height: 200))
         emojiLabel.text = emoji
         emojiLabel.font = emojiLabel.font.withSize(40)
-
+        
         
         UIView.animate(withDuration: randomDuration, delay: randomDelay, options: [.repeat, .curveEaseIn], animations: {
             emojiLabel.frame.origin = CGPoint(x: randomXPosition, y: 1500)
@@ -121,7 +121,7 @@ extension SingleContactViewController {
             self.navigationController?.pushViewController(singleMapViewController, animated: true)
         }
     }
-        
+    
     @IBAction func editUserPressed(_ sender: UIButton) {
         let editUserViewController = self.storyboard?.instantiateViewController(identifier: "EditUser") as! EditUserViewController
         editUserViewController.currentUser = self.currentUser
