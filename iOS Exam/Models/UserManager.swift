@@ -24,9 +24,30 @@ class UserManager {
         return self.context
     }
     
+    //TODO: Maybe this can be refactored?
+    func fetchCurrentUserData(withFirstName firstname: String) -> User {
+        var currentUser: User = User()
+        let fetchRequest = fetchSingleUser(firstname, formatAttribute: "firstName")
+        
+        do {
+            let results = try context.fetch(fetchRequest)
+            
+            if(results.count == 0) {
+                //Inserting
+            } else {
+                //Retrieveing
+                currentUser = results.first!
+            }
+        } catch {
+            print("Something went wrong in fetchCurrenUserData: \(error.localizedDescription)")
+        }
+        
+        return currentUser
+    }
+    
     func fetchCurrentUserData(withId id: String) -> User {
         var currentUser: User = User()
-        let fetchRequest = fetchSingleUser(id)
+        let fetchRequest = fetchSingleUser(id, formatAttribute: "id")
         do {
             let results = try context.fetch(fetchRequest)
             
@@ -44,10 +65,10 @@ class UserManager {
     }
     
     //This needs to take the datePicker aswell
-    func editSingleUser(withAttribute id: String, user: User, firstName: String?, lastName: String?, email: String?, city: String?, phone: String?) -> User {
+    func editSingleUser(withAttribute id: String, user: User, firstName: String?, lastName: String?, birthDate: String?, email: String?, city: String?, phone: String?) -> User {
         
         var currentUser: User = user
-        let request = fetchSingleUser(id)
+        let request = fetchSingleUser(id, formatAttribute: "id")
         
         do {
             let results: [User] = try context.fetch(request)
@@ -70,6 +91,11 @@ class UserManager {
                 currentUser.lastName = lastName
             }
             
+            if let birthDate = birthDate {
+                currentUser.birthdate = birthDate
+                currentUser.age = getAgeFromDOF(date: birthDate)
+            }
+            
             if let email = email {
                 currentUser.email = email
             }
@@ -88,6 +114,46 @@ class UserManager {
         }
         
         return currentUser
+    }
+    
+    func checkIfUserHasBirthday(userDate: String) -> Bool {
+        //https://stackoverflow.com/questions/36861732/convert-string-to-date-in-swift
+        let calendar = Calendar.current
+        let weekOfYear = calendar.component(.weekOfYear, from: Date.init(timeIntervalSinceNow: 0))
+        
+        let dateFormatter1 = DateFormatter()
+        dateFormatter1.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter1.dateFormat = "yyyy-MM-dd"
+        
+        let date = dateFormatter1.date(from: userDate)!
+        
+        print("date from string: \(date)")
+        let userWeek = calendar.component(.weekOfYear, from: date)
+        
+        print("Current week of the year baby: \(weekOfYear)")
+        print("Curren week from the birthday: \(userWeek)")
+        
+        //If the user date is within the same week as the current, we play the animation.
+        if weekOfYear == userWeek {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    
+    //https://newbedev.com/calculate-age-from-birth-date-using-nsdatecomponents-in-swift
+    func getAgeFromDOF(date: String) -> Int32 {
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "YYYY-MM-dd"
+        let dateOfBirth = dateFormater.date(from: date)
+
+        let calender = Calendar.current
+
+        let dateComponent = calender.dateComponents([.year, .month, .day], from:
+        dateOfBirth!, to: Date())
+
+        return Int32(dateComponent.year!)
     }
     
     //TODO: - We need to implement the second entity here, so we wont refetch the user from the API
@@ -109,10 +175,11 @@ class UserManager {
         }
     }
     
-    func fetchSingleUser(_ attribute: String) -> NSFetchRequest<User> {
+    func fetchSingleUser(_ attribute: String, formatAttribute: String) -> NSFetchRequest<User> {
         let fetchRequest = NSFetchRequest<User>(entityName: "User")
         fetchRequest.fetchLimit = 1
-        fetchRequest.predicate = NSPredicate(format: "id LIKE %@", attribute)
+        let predicate = "\(formatAttribute) like %@"
+        fetchRequest.predicate = NSPredicate(format: predicate, attribute)
         
         return fetchRequest
     }
@@ -171,8 +238,8 @@ class UserManager {
         return results
     }
     
+    
     func fetchJsonAndUpdateDatabase(from url: String) {
-        
         var results: [Result] = []
         let url = URL(string: url)
         
@@ -201,32 +268,35 @@ class UserManager {
             
             //Results returned from the fetch
             results = json.results
-
-            var deletedUsers: [DeletedUser] = []
             
+            var deletedUsers: [DeletedUser] = []
+            //var changedUsers: [User] = []
             do {
                 deletedUsers = try self.context.fetch(DeletedUser.fetchRequest())
+                //changedUsers = try self.context.fetch((User.fetchRequest())
             } catch {
                 print("Error fetching deleted users from fetchJson: \(error.localizedDescription)")
             }
-
+            
             for result in results {
-                
                 //Checking if our DeletedUser entity contains the userID from the API
                 if deletedUsers.contains(where: { $0.id == result.login.uuid }) {
                     print("Deleted user detected.")
+                    
                 } else {
-    
                     //We just force unwrap, since the API does not return any null values and we already guard the response object incase something goes wrong.
                     let newUser = User(context: self.context)
                     
-                    //Maybe this can be added in the init?
+                    //Format date properly
+                    var date = result.dob.date
+                    date = date.formatDate(format: "yyyy/MM/dd", with: date)
+                    
                     newUser.id = result.login.uuid
                     newUser.age = Int32(result.dob.age)
                     newUser.nameTitle = result.name.title
                     newUser.firstName = result.name.first
                     newUser.lastName = result.name.last
-                    newUser.birthdate = result.dob.date // This needs to be converted to a Date!
+                    newUser.birthdate = date
                     newUser.cell = result.cell
                     newUser.city = result.location.city
                     newUser.email = result.email
@@ -236,6 +306,7 @@ class UserManager {
                     newUser.nat = result.nat
                     newUser.phone = result.phone
                     newUser.pictureThumbnail = result.picture.thumbnail
+                    newUser.pictureLarge = result.picture.large
                     newUser.state = result.location.state
                     newUser.streetName = result.location.street.name
                     newUser.streetNumber = String(result.location.street.number)
@@ -250,6 +321,5 @@ class UserManager {
             }
         })
         task.resume()
-        
     }
 }

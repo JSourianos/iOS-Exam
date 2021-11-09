@@ -42,6 +42,7 @@
 		43F446AE272A10D1004EDD78 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F446AD272A10D1004EDD78 /* UserManager.swift */; };
 		43F446B0272B0736004EDD78 /* DeletedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F446AF272B0736004EDD78 /* DeletedUser.swift */; };
 		43F446B2272B0769004EDD78 /* DeletedUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F446B1272B0769004EDD78 /* DeletedUserManager.swift */; };
+		43F446B4272BF930004EDD78 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F446B3272BF930004EDD78 /* extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,8 @@
 		43F446AD272A10D1004EDD78 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		43F446AF272B0736004EDD78 /* DeletedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedUser.swift; sourceTree = "<group>"; };
 		43F446B1272B0769004EDD78 /* DeletedUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedUserManager.swift; sourceTree = "<group>"; };
+		43F446B3272BF930004EDD78 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
+		43F446B8273ACA11004EDD78 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +128,7 @@
 				433F30CB27275A5A00659DDD /* UserMarker.swift */,
 				433F317D2729926200659DDD /* CustomPointAnnotation.swift */,
 				433F3187272994C900659DDD /* ContactsCell.swift */,
+				43F446B3272BF930004EDD78 /* extensions.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -132,6 +136,7 @@
 		43AE44DC27205D1C00AA7CD3 = {
 			isa = PBXGroup;
 			children = (
+				43F446B8273ACA11004EDD78 /* README.md */,
 				43AE44E727205D1C00AA7CD3 /* iOS Exam */,
 				43AE44FE27205D1D00AA7CD3 /* iOS ExamTests */,
 				43AE450927205D1D00AA7CD3 /* iOS ExamUITests */,
@@ -355,6 +360,7 @@
 				433F30D42727ED0000659DDD /* UserDataModel.xcdatamodeld in Sources */,
 				43F446B2272B0769004EDD78 /* DeletedUserManager.swift in Sources */,
 				43AE44E927205D1C00AA7CD3 /* AppDelegate.swift in Sources */,
+				43F446B4272BF930004EDD78 /* extensions.swift in Sources */,
 				43AE451D27205D8900AA7CD3 /* UserModel.swift in Sources */,
 				43F446AE272A10D1004EDD78 /* UserManager.swift in Sources */,
 				433F30C127270CB500659DDD /* SingleContactViewController.swift in Sources */,
@@ -545,6 +551,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 39AC5R5G6B;
 				INFOPLIST_FILE = "iOS Exam/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -563,6 +570,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 39AC5R5G6B;
 				INFOPLIST_FILE = "iOS Exam/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

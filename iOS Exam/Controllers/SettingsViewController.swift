@@ -1,13 +1,6 @@
-//
-//  SettingsViewController.swift
-//  iOS Exam
-//
-//  Created by Thomas Sourianos on 20/10/2021.
-//
-
 import UIKit
 import CoreData
-
+//TODO: - TextFieldDelegate!
 class SettingsViewController: UIViewController {
 
     let userManager = UserManager()
@@ -15,13 +8,14 @@ class SettingsViewController: UIViewController {
     
     var url = "https://randomuser.me/api?results=100"
     var userSeed: String = ""
-    
+
     @IBOutlet weak var seedTextField: UITextField!
     @IBOutlet weak var rightBarButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.context = userManager.getContext()
+        seedTextField.delegate = self
         
         navigationItem.title = "Settings"
     }
@@ -32,11 +26,22 @@ class SettingsViewController: UIViewController {
         } else {
             userSeed = "android" //defaulting the value incase the user dont input anything
         }
-
-        url = "https://randomuser.me/api?results=100&seed=\(userSeed)"
+                
+        url = "https://randomuser.me/api?results=100&seed=\(userSeed)&nat=no"
         print("New seed: \(userSeed)")
                 
         userManager.deleteNonChangedUsers()
         userManager.fetchJsonAndUpdateDatabase(from: url)
+    }
+}
+
+//MARK: - UITextField Delegate
+extension SettingsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.endEditing(true)
     }
 }

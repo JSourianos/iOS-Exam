@@ -1,22 +1,18 @@
-//
-//  SingleMapViewController.swift
-//  iOS Exam
-//
-//  Created by Thomas Sourianos on 27/10/2021.
-//
-
 import UIKit
 import MapKit
 
 class SingleMapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var singleMapView: MKMapView!
+    var userManager = UserManager()
+    var currentUserId = ""
     var currentUser = User()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         singleMapView.delegate = self
+        currentUser = userManager.fetchCurrentUserData(withId: currentUserId)
         
         //User information
         let lat = Double(currentUser.latitude!)
@@ -29,21 +25,12 @@ class SingleMapViewController: UIViewController, MKMapViewDelegate {
         createCustomAnnotation(imageName: currentUser.pictureThumbnail!, coordinates: CLLocationCoordinate2D(latitude: lat!, longitude: lon!), userName: userName, userInformation: userInformation, mapView: singleMapView)
             
         singleMapView.setStartLocation(location: initialLocation, meters: 50000)
-    }
-    
-    //Maybe move this out?
-    func createCustomAnnotation(imageName: String, coordinates: CLLocationCoordinate2D, userName: String, userInformation: String, mapView: MKMapView){
-        let customAnnotation = CustomPointAnnotation()
-        customAnnotation.pinCustomImageName = imageName
-        customAnnotation.coordinate = coordinates
-        customAnnotation.title = userName
-        customAnnotation.subtitle = userInformation
-        mapView.addAnnotation(customAnnotation)
+        
+        navigationItem.title = currentUser.firstName
     }
 }
 
-
-//MARK: - MapView Custom Pin (FIND A WAY TO REFACTOR)
+//MARK: - MapView Custom Pin & MapView override
 extension SingleMapViewController {
     //https://stackoverflow.com/questions/30262269/custom-marker-image-on-swift-mapkit
     //Modified this function to load custom images from urls.
@@ -67,5 +54,14 @@ extension SingleMapViewController {
         }
         
         return annotationView
+    }
+    
+    func createCustomAnnotation(imageName: String, coordinates: CLLocationCoordinate2D, userName: String, userInformation: String, mapView: MKMapView){
+        let customAnnotation = CustomPointAnnotation()
+        customAnnotation.pinCustomImageName = imageName
+        customAnnotation.coordinate = coordinates
+        customAnnotation.title = userName
+        customAnnotation.subtitle = userInformation
+        mapView.addAnnotation(customAnnotation)
     }
 }

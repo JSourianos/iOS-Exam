@@ -10,7 +10,7 @@ import CoreData
 
 class EditUserViewController: UIViewController {
     //You wont access this screen without receiving the currentUser, so we can force unwrap it (quite) safely.
-    var currentUser: User!
+    var currentUser = User()
     var userManager = UserManager()
     
     var activeTextField: UITextField!
@@ -33,6 +33,9 @@ class EditUserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Datepicker
+        datePicker.addTarget(self, action: #selector(datePickerChanged(picker:)), for: .valueChanged)
+        
         //TextField delegates
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
@@ -42,29 +45,36 @@ class EditUserViewController: UIViewController {
         
         navigationController?.title = "Edit User"
     }
-    
-    //TODO: - We can just save the age property, and WHEN the user changes his date, we calculate what age they are, and save this aswell.
+
     @IBAction func submitChangesPressed(_ sender: UIButton) {
-        firstNameTextField.endEditing(true)
+        firstNameTextField.endEditing(true) //check this out aswell
         
         guard let id = currentUser.id else { return }
-        let updatedUser = userManager.editSingleUser(withAttribute: id, user: currentUser, firstName: newFirstName, lastName: newLastName, email: newEmail, city: newCity, phone: newPhone)
-        
+
+        let updatedUser = userManager.editSingleUser(withAttribute: id, user: currentUser, firstName: newFirstName, lastName: newLastName, birthDate: newBirthdate, email: newEmail, city: newCity, phone: newPhone)
         
         delegate?.updateCurrentUser(with: updatedUser)
         navigationController?.popViewController(animated: true)
     }
+}
+
+//MARK: - DatePicker
+extension EditUserViewController {
+    @objc func datePickerChanged(picker: UIDatePicker) {
+        newBirthdate = turnDateToString(datePicker: picker)
+    }
     
-    func formatDate(date: Date) -> String {
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateStyle = DateFormatter.Style.long
-        let stringDate = timeFormatter.string(from: date)
+    func turnDateToString(datePicker: UIDatePicker) -> String {
+        let formatter = DateFormatter()
+        formatter.calendar = datePicker.calendar
+        formatter.dateFormat = "yyyy-MM-dd"
+        let dateString = formatter.string(from: datePicker.date)
         
-        return stringDate
+        return dateString
     }
 }
 
-//this is still wonky
+//MARK: - UITextFieldDelegate
 extension EditUserViewController: UITextFieldDelegate {
     //https://rderik.com/blog/solutions-to-common-scenarios-when-using-uitextfield-on-ios/#handling-multiple-text-fields
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

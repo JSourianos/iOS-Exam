@@ -9,7 +9,6 @@ import UIKit
 import CoreData
 
 class ContactsViewController: UIViewController {
-    var TESTARRAY: [User] = [] //REMEMBER TO REMOVE
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -18,11 +17,10 @@ class ContactsViewController: UIViewController {
     var context: NSManagedObjectContext!
     
     var fetchedResultsController: NSFetchedResultsController<User>!
-    let url = "https://randomuser.me/api?results=100&seed=ios"
+    let url = "https://randomuser.me/api?results=100&seed=ios&nat=no"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         context = userManager.getContext()
         
@@ -88,45 +86,6 @@ class ContactsViewController: UIViewController {
     }
 }
 
-//MARK: - Testing functions !REMEMBER TO REMOVE!
-extension ContactsViewController {
-    //TESTING CORE DATA!
-    @IBAction func getDataPressed(_ sender: UIButton) {
-        do {
-            self.TESTARRAY = try context.fetch(User.fetchRequest())
-        } catch {
-            print("Error persisting to core data: \(error.localizedDescription)")
-        }
-        
-        for user in TESTARRAY {
-            print(user.email!)
-        }
-    }
-    
-    @IBAction func deleteDataPressed(_ sender: UIButton) {
-        print("Deleting data....")
-        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-        
-        let deleteFetch2 = NSFetchRequest<NSFetchRequestResult>(entityName: "DeletedUser")
-        let deleteRequest2 = NSBatchDeleteRequest(fetchRequest: deleteFetch2)
-        
-        do {
-            try context.execute(deleteRequest)
-            try context.execute(deleteRequest2)
-            
-            try context.save()
-            print("Data deleted.")
-        } catch {
-            print("Error deleting data: \(error.localizedDescription)")
-        }
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-}
-
 //MARK: - FetchedResultsController Extension
 extension ContactsViewController: NSFetchedResultsControllerDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -149,26 +108,30 @@ extension ContactsViewController: NSFetchedResultsControllerDelegate {
             tableView.moveRow(at: indexPath!, to: newIndexPath!)
         default:
             break
-            
         }
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        
         self.tableView.endUpdates()
-        
     }
 }
 
 //https://github.com/jrasmusson/swift-arcade/blob/master/CoreData/2-NSFetchedResultsController.md
 extension ContactsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContactsCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let user = fetchedResultsController.object(at: indexPath)
         
-        let fullName = "\(user.firstName!) \(user.lastName!)"
+        let fullName = "\(user.firstName ?? "nofirstname") \(user.lastName ?? "nolastname")"
+
         cell.textLabel?.text = fullName
-        cell.imageView?.imageFromUrl(with: user.pictureThumbnail!)
+        let imageFromUrl = cell.imageView?.imageFromUrl(with: user.pictureThumbnail!)
+        
+        if let imageFromUrl = imageFromUrl {
+            cell.imageView?.image = imageFromUrl
+        } else {
+            cell.imageView?.image = UIImage(named: "Pin")
+        }
         
         return cell
     }
@@ -187,26 +150,3 @@ extension ContactsViewController: UITableViewDataSource, UITableViewDelegate {
         return sectionInfo.numberOfObjects
     }
 }
-
-//This extension fetches each image from the URL in the API
-//MARK: -  Image Fetch Extension
-extension UIImageView {
-    public func imageFromUrl(with urlString: String){
-        let url = URL(string: urlString)
-        let task = URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error)  in
-            if error != nil {
-                print(error.debugDescription)
-                return
-            }
-            
-            if let data = data {
-                DispatchQueue.main.async {
-                    self.image = UIImage(data: data)
-                }
-            }
-        })
-        
-        task.resume()
-    }
-}
-

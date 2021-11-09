@@ -19,6 +19,7 @@
         <attribute name="nameTitle" attributeType="String"/>
         <attribute name="nat" attributeType="String"/>
         <attribute name="phone" attributeType="String"/>
+        <attribute name="pictureLarge" optional="YES" attributeType="String"/>
         <attribute name="pictureThumbnail" attributeType="String"/>
         <attribute name="state" attributeType="String"/>
         <attribute name="streetName" attributeType="String"/>
@@ -26,6 +27,6 @@
     </entity>
     <elements>
         <element name="DeletedUser" positionX="-63" positionY="126" width="128" height="44"/>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="314"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="329"/>
     </elements>
 </model>

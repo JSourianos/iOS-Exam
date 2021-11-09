@@ -2,6 +2,7 @@
 //REMEMBER TO WRITE ABOUT USING THIS CODE
 import MapKit
 
+/*
 class UserMarker: NSObject, MKAnnotation {
   let title: String?
   let locationName: String?
@@ -26,3 +27,5 @@ class UserMarker: NSObject, MKAnnotation {
     return locationName
   }
 }
+
+*/

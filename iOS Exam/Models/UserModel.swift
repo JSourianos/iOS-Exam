@@ -18,6 +18,37 @@ struct Result: Codable {
     var id: Id?
     var picture: Picture
     var nat: String
+    
+    enum Keys: String, CodingKey {
+        case gender
+        case name
+        case location
+        case email
+        case login
+        case dob
+        case registered
+        case phone
+        case cell
+        case id
+        case picture
+        case nat
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+        self.gender = try container.decode(String.self, forKey: .gender)
+        self.name = try container.decode(Name.self, forKey: .name)
+        self.location = try container.decode(Location.self, forKey: .location)
+        self.email = try container.decode(String.self, forKey: .email)
+        self.login = try container.decode(Login.self, forKey: .login)
+        self.dob = try container.decode(Dob.self, forKey: .dob)
+        self.registered = try container.decode(Registered.self, forKey: .registered)
+        self.phone = try container.decode(String.self, forKey: .phone)
+        self.cell = try container.decode(String.self, forKey: .cell)
+        self.id = try container.decode(Id.self, forKey: .id)
+        self.picture = try container.decode(Picture.self, forKey: .picture)
+        self.nat = try container.decode(String.self, forKey: .nat)
+    }
 }
 
 /* MOVE THESE TO A SEPARATE FILE! */
@@ -45,7 +76,6 @@ struct Street: Codable {
 
 //This represents the coordinates inside the Location struct.
 struct Coordinates: Codable {
-    //These should be converted to doubles
     var latitude: String
     var longitude: String
 }
@@ -65,9 +95,8 @@ struct Login: Codable {
     var sha256: String
 }
 
-//NOTE - REMEMBER TO FIX THIS
 struct Dob: Codable {
-    var date: String //this is the date -> 1993-07-20T09:44:18.674Z
+    var date: String
     var age: Int
 }
 
@@ -84,7 +113,7 @@ struct Id: Codable {
 struct Picture: Codable {
     var large: String
     var medium: String
-    var thumbnail: String //this should really be an URL, but we can deal with this later
+    var thumbnail: String
 }
 
 struct Info: Codable{

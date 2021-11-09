@@ -14,7 +14,8 @@ class DeletedUserManager {
             print("Error inserting deleted user: \(error.localizedDescription)")
         }
     }
-    
+    //TODO: - Check if this is needed.
+    //Mostly for testing purposes
     func fetchAllDeletedUsers() {
         do {
             let results: [DeletedUser] = try context.fetch(DeletedUser.fetchRequest())
