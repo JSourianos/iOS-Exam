@@ -276,6 +276,9 @@ class UserManager {
                 print("Error fetching deleted users from fetchJson: \(error.localizedDescription)")
             }
             
+            //Using this to sort our tableView by when it was inserted in the database.
+            var insertedAt: Int32 = 0
+            
             for result in results {
                 //Checking if our DeletedUser entity contains the userID from the API
                 if deletedUsers.contains(where: { $0.id == result.login.uuid }) {
@@ -297,6 +300,7 @@ class UserManager {
                     var date = result.dob.date
                     date = date.formatDate(format: "yyyy/MM/dd", with: date)
                     
+                    newUser.insertedAt = insertedAt
                     newUser.id = result.login.uuid
                     newUser.age = Int32(result.dob.age)
                     newUser.nameTitle = result.name.title
@@ -316,6 +320,8 @@ class UserManager {
                     newUser.state = result.location.state
                     newUser.streetName = result.location.street.name
                     newUser.streetNumber = String(result.location.street.number)
+                    
+                    insertedAt += 1
                 }
             }
             

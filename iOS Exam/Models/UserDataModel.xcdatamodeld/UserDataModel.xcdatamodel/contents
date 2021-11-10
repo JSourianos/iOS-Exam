@@ -15,6 +15,7 @@
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="imageDataLarge" optional="YES" attributeType="Binary"/>
         <attribute name="imageDataThumbnail" optional="YES" attributeType="Binary"/>
+        <attribute name="insertedAt" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="lastName" attributeType="String"/>
         <attribute name="latitude" attributeType="String"/>
         <attribute name="longitude" attributeType="String"/>
@@ -29,6 +30,6 @@
     </entity>
     <elements>
         <element name="DeletedUser" positionX="-63" positionY="126" width="128" height="44"/>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="359"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="374"/>
     </elements>
 </model>

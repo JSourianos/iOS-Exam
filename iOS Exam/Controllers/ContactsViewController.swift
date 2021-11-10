@@ -38,7 +38,7 @@ extension ContactsViewController {
     func setupFRC() {
         if fetchedResultsController == nil {
             let request = NSFetchRequest<User>(entityName: "User")
-            let sort = NSSortDescriptor(key: "firstName", ascending: true)
+            let sort = NSSortDescriptor(key: "insertedAt", ascending: true)
             request.sortDescriptors = [sort]
             
             fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
@@ -94,7 +94,7 @@ extension ContactsViewController: NSFetchedResultsControllerDelegate {
         switch type {
         case .insert:
             guard let newIndexPath = newIndexPath else { return }
-            tableView.insertRows(at: [newIndexPath], with: .fade)
+            tableView.insertRows(at: [newIndexPath], with: .fade) // add .none here, and we have no animation ( but it looks ugly)
         case .delete:
             guard let indexPath = indexPath else { return }
             tableView.deleteRows(at: [indexPath], with: .fade)
