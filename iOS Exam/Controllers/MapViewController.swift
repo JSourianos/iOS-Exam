@@ -34,27 +34,27 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func displayUserMarkers(){
-        DispatchQueue.background(delay: 1.5, background: {
-            self.allUsers = self.userManager.fetchAllUsers()
-            self.annotations = [] //reset annotation array
-            
-            if let allUsers = self.allUsers {
-                for user in allUsers {
-                    let lat = Double(user.latitude!)!
-                    let lon = Double(user.longitude!)!
-                    let firstName = user.firstName! //passing the ID as title since we need to fetch data if the annotation is selected.
-                    
-                    let customAnnotation = CustomPointAnnotation()
-                    customAnnotation.pinCustomImageName = user.pictureThumbnail!
-                    customAnnotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-                    customAnnotation.title = firstName
-                    
-                    self.annotations.append(customAnnotation)
-                }
+        
+        allUsers = userManager.fetchAllUsers()
+        self.annotations = []
+        
+        if let allUsers = allUsers {
+            for user in allUsers {
+                let lat = Double(user.latitude!)!
+                let lon = Double(user.longitude!)!
+                let firstName = user.firstName! //passing the ID as title since we need to fetch data if the annotation is selected.
+                
+                let customAnnotation = CustomPointAnnotation()
+                customAnnotation.pinCustomImageName = user.pictureThumbnail!
+                customAnnotation.userImageData = user.imageDataThumbnail!
+                customAnnotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                customAnnotation.title = firstName
+                
+                annotations.append(customAnnotation)
             }
-        }, completion: {
-            self.mapView.addAnnotations(self.annotations)
-        })
+        }
+
+        mapView.addAnnotations(annotations)
     }
 }
 
@@ -78,11 +78,10 @@ extension MapViewController {
         let customPointAnnotation = annotation as! CustomPointAnnotation
         
         DispatchQueue.main.async {
-            if let imageData = try? Data(contentsOf: URL(string: customPointAnnotation.pinCustomImageName!)!) {
+            if let imageData = customPointAnnotation.userImageData {
                 annotationView?.image = UIImage(data: imageData)
             } else {
                 let pinImage = UIImage(named: "Pin")
-                //Since we fetch the images from the internet, we need a custom pin to ensure that we have a picture when we have no internet.
                 annotationView?.image = pinImage
             }
         }
@@ -90,12 +89,6 @@ extension MapViewController {
         return annotationView
     }
     //TODO: - Sjekk om vi heller skal ha all koden under her! Da loader hvertfall mappet først.
-    
-    /*
-     func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
-     <#code#>
-     }
-     */
     
     //What to happen when we click a annotation
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {

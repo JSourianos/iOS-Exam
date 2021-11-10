@@ -10,7 +10,7 @@ class SettingsViewController: UIViewController {
     var userSeed: String = ""
     
     @IBOutlet weak var seedTextField: UITextField!
-    @IBOutlet weak var rightBarButton: UIBarButtonItem!
+    @IBOutlet weak var changeSeedButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()

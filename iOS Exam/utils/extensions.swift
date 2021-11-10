@@ -25,11 +25,9 @@ extension UIDatePicker {
 
 //MARK: -  Image Fetch Extension
 extension UIImageView {
-    public func imageFromUrl(with urlString: String) -> UIImage{
+    public func imageFromUrl(with urlString: String){
         let url = URL(string: urlString)
-        DispatchQueue.global().async {
-            let image: UIImage?
-            
+        DispatchQueue.global().async {            
             let task = URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error)  in
                 if error != nil {
                     print(error.debugDescription)
@@ -45,11 +43,7 @@ extension UIImageView {
             
             task.resume()
         }
-        
-        if let image = image {
-            return image
-        } else {
-            return UIImage(named: "Pin")!
-        }
     }
 }
+
+

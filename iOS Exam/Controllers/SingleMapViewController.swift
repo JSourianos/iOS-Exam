@@ -22,7 +22,7 @@ class SingleMapViewController: UIViewController, MKMapViewDelegate {
         
         let initialLocation = CLLocationCoordinate2D(latitude: lat!, longitude: lon!)
         
-        createCustomAnnotation(imageName: currentUser.pictureThumbnail!, coordinates: CLLocationCoordinate2D(latitude: lat!, longitude: lon!), userName: userName, userInformation: userInformation, mapView: singleMapView)
+        createCustomAnnotation(imageName: currentUser.pictureThumbnail!, coordinates: CLLocationCoordinate2D(latitude: lat!, longitude: lon!), userName: userName, userInformation: userInformation, userImageData: currentUser.imageDataThumbnail!, mapView: singleMapView)
         
         singleMapView.setStartLocation(location: initialLocation, meters: 50000)
         
@@ -47,21 +47,25 @@ extension SingleMapViewController {
         
         let customPointAnnotation = annotation as! CustomPointAnnotation
         
-        if let imageData = try? Data(contentsOf: URL(string: customPointAnnotation.pinCustomImageName!)!) {
-            annotationView?.image = UIImage(data: imageData)
-        } else {
-            annotationView?.image = UIImage()
+        DispatchQueue.main.async {
+            if let imageData = customPointAnnotation.userImageData {
+                annotationView?.image = UIImage(data: imageData)
+            } else {
+                let pinImage = UIImage(named: "Pin")
+                annotationView?.image = pinImage
+            }
         }
         
         return annotationView
     }
     
-    func createCustomAnnotation(imageName: String, coordinates: CLLocationCoordinate2D, userName: String, userInformation: String, mapView: MKMapView){
+    func createCustomAnnotation(imageName: String, coordinates: CLLocationCoordinate2D, userName: String, userInformation: String, userImageData: Data, mapView: MKMapView){
         let customAnnotation = CustomPointAnnotation()
         customAnnotation.pinCustomImageName = imageName
         customAnnotation.coordinate = coordinates
         customAnnotation.title = userName
         customAnnotation.subtitle = userInformation
+        customAnnotation.userImageData = userImageData
         mapView.addAnnotation(customAnnotation)
     }
 }

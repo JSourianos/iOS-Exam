@@ -238,7 +238,6 @@ class UserManager {
         return results
     }
     
-    
     func fetchJsonAndUpdateDatabase(from url: String) {
         var results: [Result] = []
         let url = URL(string: url)
@@ -287,6 +286,14 @@ class UserManager {
                     //We just force unwrap, since the API does not return any null values and we already guard the response object incase something goes wrong.
                     let newUser = User(context: self.context)
                     
+                    //This is the byte data of the image
+                    do {
+                        newUser.imageDataLarge = try Data(contentsOf: URL(string: result.picture.large)!)
+                        newUser.imageDataThumbnail = try Data(contentsOf: URL(string: result.picture.thumbnail)!)
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                    
                     //Format date properly
                     var date = result.dob.date
                     date = date.formatDate(format: "yyyy/MM/dd", with: date)
@@ -305,7 +312,7 @@ class UserManager {
                     newUser.longitude = result.location.coordinates.longitude
                     newUser.nat = result.nat
                     newUser.phone = result.phone
-                    newUser.pictureThumbnail = result.picture.thumbnail
+                    newUser.pictureThumbnail = result.picture.thumbnail //Not really necessary
                     newUser.pictureLarge = result.picture.large
                     newUser.state = result.location.state
                     newUser.streetName = result.location.street.name
@@ -323,3 +330,5 @@ class UserManager {
         task.resume()
     }
 }
+
+

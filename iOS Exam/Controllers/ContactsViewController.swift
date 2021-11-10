@@ -74,6 +74,7 @@ class ContactsViewController: UIViewController {
         } catch {
             print("Error fetching already existing users: \(error.localizedDescription)")
         }
+        
         //If there is zero or less items in the database, fetch results. If not, just reload the TableView
         if(tempUsers.count <= 0) {
             //Fetch API data when the app is loaded
@@ -122,15 +123,11 @@ extension ContactsViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let user = fetchedResultsController.object(at: indexPath)
         
-        let fullName = "\(user.firstName ?? "nofirstname") \(user.lastName ?? "nolastname")"
+        let fullName = "\(user.firstName ?? "") \(user.lastName ?? "")"
         
         cell.textLabel?.text = fullName
-        let imageFromUrl = cell.imageView?.imageFromUrl(with: user.pictureThumbnail!)
-        
-        if let imageFromUrl = imageFromUrl {
-            cell.imageView?.image = imageFromUrl
-        } else {
-            cell.imageView?.image = UIImage(named: "Pin")
+        if let imageData = user.imageDataThumbnail {
+            cell.imageView?.image = UIImage(data: imageData)
         }
         
         return cell

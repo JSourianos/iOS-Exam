@@ -64,7 +64,6 @@ struct Location: Codable {
     var street: Street
     var city: String
     var state: String
-    var postcode: AnyCodableValue
     var coordinates: Coordinates
     var timezone: Timezone
 }

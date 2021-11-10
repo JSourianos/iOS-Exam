@@ -30,7 +30,6 @@ class SingleContactViewController: UIViewController, UserDelegate {
         populateLayout(with: currentUser)
         
         let birthWeek = userManager.checkIfUserHasBirthday(userDate: currentUser.birthdate!)
-        
         if birthWeek {
             playBirthdayAnimation()
         }
@@ -52,8 +51,7 @@ class SingleContactViewController: UIViewController, UserDelegate {
         let fullName = "\(currentUser.firstName!) \(currentUser.lastName!)"
         
         let age: Int32 = currentUser.age
-        
-        userImageView.image = userImageView.imageFromUrl(with: currentUser.pictureLarge!)
+        userImageView.image = UIImage(data: currentUser.imageDataLarge!)
         fullNameLabel.text = fullName
         dateLabel.text = currentUser.birthdate!
         cityLabel.text = currentUser.city!

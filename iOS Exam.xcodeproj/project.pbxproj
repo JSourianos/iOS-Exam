@@ -10,9 +10,6 @@
 		433F30B02726F4D800659DDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433F30AF2726F4D800659DDD /* Main.storyboard */; };
 		433F30B12726F4D800659DDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433F30AF2726F4D800659DDD /* Main.storyboard */; };
 		433F30B22726F4D800659DDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433F30AF2726F4D800659DDD /* Main.storyboard */; };
-		433F30BA272708BD00659DDD /* AnyCodableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F30B9272708BD00659DDD /* AnyCodableValue.swift */; };
-		433F30BB272708BD00659DDD /* AnyCodableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F30B9272708BD00659DDD /* AnyCodableValue.swift */; };
-		433F30BC272708BD00659DDD /* AnyCodableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F30B9272708BD00659DDD /* AnyCodableValue.swift */; };
 		433F30C127270CB500659DDD /* SingleContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F30C027270CB500659DDD /* SingleContactViewController.swift */; };
 		433F30C227270CB500659DDD /* SingleContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F30C027270CB500659DDD /* SingleContactViewController.swift */; };
 		433F30C327270CB500659DDD /* SingleContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F30C027270CB500659DDD /* SingleContactViewController.swift */; };
@@ -30,7 +27,6 @@
 		43AE44ED27205D1C00AA7CD3 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE44EC27205D1C00AA7CD3 /* ContactsViewController.swift */; };
 		43AE44F227205D1D00AA7CD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43AE44F127205D1D00AA7CD3 /* Assets.xcassets */; };
 		43AE44F527205D1D00AA7CD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43AE44F327205D1D00AA7CD3 /* LaunchScreen.storyboard */; };
-		43AE450027205D1D00AA7CD3 /* iOS_ExamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE44FF27205D1D00AA7CD3 /* iOS_ExamTests.swift */; };
 		43AE451D27205D8900AA7CD3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE451C27205D8900AA7CD3 /* UserModel.swift */; };
 		43AE453A2720724600AA7CD3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE45392720724600AA7CD3 /* MapViewController.swift */; };
 		43AE453F2720727B00AA7CD3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE453E2720727B00AA7CD3 /* SettingsViewController.swift */; };
@@ -60,7 +56,6 @@
 
 /* Begin PBXFileReference section */
 		433F30AF2726F4D800659DDD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = "../../../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/Main.storyboard"; sourceTree = "<group>"; };
-		433F30B9272708BD00659DDD /* AnyCodableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCodableValue.swift; sourceTree = "<group>"; };
 		433F30C027270CB500659DDD /* SingleContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleContactViewController.swift; sourceTree = "<group>"; };
 		433F30D32727ED0000659DDD /* UserDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserDataModel.xcdatamodel; sourceTree = "<group>"; };
 		433F31102728073700659DDD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -75,8 +70,6 @@
 		43AE44F427205D1D00AA7CD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43AE44F627205D1D00AA7CD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43AE44FB27205D1D00AA7CD3 /* iOS ExamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS ExamTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		43AE44FF27205D1D00AA7CD3 /* iOS_ExamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_ExamTests.swift; sourceTree = "<group>"; };
-		43AE450127205D1D00AA7CD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43AE450627205D1D00AA7CD3 /* iOS ExamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS ExamUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43AE451C27205D8900AA7CD3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		43AE45392720724600AA7CD3 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -117,7 +110,6 @@
 		433F30C727275A3B00659DDD /* utils */ = {
 			isa = PBXGroup;
 			children = (
-				433F30B9272708BD00659DDD /* AnyCodableValue.swift */,
 				433F317D2729926200659DDD /* CustomPointAnnotation.swift */,
 				43F446B3272BF930004EDD78 /* extensions.swift */,
 				43F446B9273ACE17004EDD78 /* ContactsCell.swift */,
@@ -130,7 +122,6 @@
 			children = (
 				43F446B8273ACA11004EDD78 /* README.md */,
 				43AE44E727205D1C00AA7CD3 /* iOS Exam */,
-				43AE44FE27205D1D00AA7CD3 /* iOS ExamTests */,
 				43AE44E627205D1C00AA7CD3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -158,15 +149,6 @@
 				433F30C727275A3B00659DDD /* utils */,
 			);
 			path = "iOS Exam";
-			sourceTree = "<group>";
-		};
-		43AE44FE27205D1D00AA7CD3 /* iOS ExamTests */ = {
-			isa = PBXGroup;
-			children = (
-				43AE44FF27205D1D00AA7CD3 /* iOS_ExamTests.swift */,
-				43AE450127205D1D00AA7CD3 /* Info.plist */,
-			);
-			path = "iOS ExamTests";
 			sourceTree = "<group>";
 		};
 		43AE451B27205D7100AA7CD3 /* Models */ = {
@@ -347,7 +329,6 @@
 				433F30C127270CB500659DDD /* SingleContactViewController.swift in Sources */,
 				43AE453A2720724600AA7CD3 /* MapViewController.swift in Sources */,
 				43AE44EB27205D1C00AA7CD3 /* SceneDelegate.swift in Sources */,
-				433F30BA272708BD00659DDD /* AnyCodableValue.swift in Sources */,
 				43AE453F2720727B00AA7CD3 /* SettingsViewController.swift in Sources */,
 				433F31112728073700659DDD /* User.swift in Sources */,
 				43F446BA273ACE17004EDD78 /* ContactsCell.swift in Sources */,
@@ -361,11 +342,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43AE450027205D1D00AA7CD3 /* iOS_ExamTests.swift in Sources */,
 				433F31122728073700659DDD /* User.swift in Sources */,
 				433F30D52727ED0000659DDD /* UserDataModel.xcdatamodeld in Sources */,
 				433F30C227270CB500659DDD /* SingleContactViewController.swift in Sources */,
-				433F30BB272708BD00659DDD /* AnyCodableValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,7 +355,6 @@
 				433F31132728073700659DDD /* User.swift in Sources */,
 				433F30D62727ED0000659DDD /* UserDataModel.xcdatamodeld in Sources */,
 				433F30C327270CB500659DDD /* SingleContactViewController.swift in Sources */,
-				433F30BC272708BD00659DDD /* AnyCodableValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

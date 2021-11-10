@@ -13,6 +13,8 @@
         <attribute name="gender" attributeType="String"/>
         <attribute name="hasChanged" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="imageDataLarge" optional="YES" attributeType="Binary"/>
+        <attribute name="imageDataThumbnail" optional="YES" attributeType="Binary"/>
         <attribute name="lastName" attributeType="String"/>
         <attribute name="latitude" attributeType="String"/>
         <attribute name="longitude" attributeType="String"/>
@@ -27,6 +29,6 @@
     </entity>
     <elements>
         <element name="DeletedUser" positionX="-63" positionY="126" width="128" height="44"/>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="329"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="359"/>
     </elements>
 </model>
