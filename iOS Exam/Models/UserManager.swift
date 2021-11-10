@@ -122,7 +122,7 @@ class UserManager {
         let weekOfYear = calendar.component(.weekOfYear, from: Date.init(timeIntervalSinceNow: 0))
         
         let dateFormatter1 = DateFormatter()
-        dateFormatter1.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter1.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter1.dateFormat = "yyyy-MM-dd"
         
         let date = dateFormatter1.date(from: userDate)!
@@ -227,7 +227,6 @@ class UserManager {
             //Results return from the fetch
             results = json.results
             
-            
             for result in results {
                 print("Results from fetchJsonWithReturn: \(result.name.first)")
             }
@@ -323,10 +322,12 @@ class UserManager {
             //Save outside the loop so we dont overwrite
             do {
                 try self.context.save()
+                print("all data saved")
             } catch {
                 print("Error writing to database: \(error.localizedDescription)")
             }
         })
+
         task.resume()
     }
 }

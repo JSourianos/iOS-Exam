@@ -43,12 +43,26 @@ class EditUserViewController: UIViewController {
         cityTextField.delegate = self
         phoneTextField.delegate = self
         
+        addUserValuesToTextField(from: currentUser)
+        
+        setKeyboardNotifications()
+        
         navigationController?.title = "Edit User"
     }
     
+}
+//MARK: - User Values and Submit Button
+extension EditUserViewController {
+    
+    func addUserValuesToTextField(from user: User) {
+        firstNameTextField.text = user.firstName
+        lastNameTextField.text = user.lastName
+        emailTextField.text = user.email
+        cityTextField.text = user.city
+        phoneTextField.text = user.phone
+    }
+    
     @IBAction func submitChangesPressed(_ sender: UIButton) {
-        firstNameTextField.endEditing(true) //check this out aswell
-        
         guard let id = currentUser.id else { return }
         
         let updatedUser = userManager.editSingleUser(withAttribute: id, user: currentUser, firstName: newFirstName, lastName: newLastName, birthDate: newBirthdate, email: newEmail, city: newCity, phone: newPhone)
@@ -60,6 +74,7 @@ class EditUserViewController: UIViewController {
 
 //MARK: - DatePicker
 extension EditUserViewController {
+    
     @objc func datePickerChanged(picker: UIDatePicker) {
         newBirthdate = turnDateToString(datePicker: picker)
     }
@@ -73,33 +88,53 @@ extension EditUserViewController {
         return dateString
     }
 }
-
+//MARK: - Moving ScrollView when Keyboard appears
+//https://stackoverflow.com/questions/26070242/move-view-with-keyboard-using-swift
+extension EditUserViewController {
+    
+    func setKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
+    
+}
 //MARK: - UITextFieldDelegate
 extension EditUserViewController: UITextFieldDelegate {
-    //https://rderik.com/blog/solutions-to-common-scenarios-when-using-uitextfield-on-ios/#handling-multiple-text-fields
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         //Normally you can just assign .endEditing and other stuff to the textField variable, but
         //since I need to assign the values to seperate variables I decided to use a switch case to detect which TextField is activ
         switch textField {
         case firstNameTextField:
-            newFirstName = firstNameTextField.text!
             firstNameTextField.endEditing(true)
             
         case lastNameTextField:
-            newLastName = lastNameTextField.text!
             lastNameTextField.endEditing(true)
             
         case emailTextField:
-            newEmail = emailTextField.text!
             emailTextField.endEditing(true)
             
         case cityTextField:
-            newCity = cityTextField.text!
             cityTextField.endEditing(true)
             
         case phoneTextField:
-            newPhone = phoneTextField.text!
             phoneTextField.endEditing(true)
             
         default:
@@ -111,27 +146,50 @@ extension EditUserViewController: UITextFieldDelegate {
     
     //This runs everytime the user presses or returns the value in the TextField
     func textFieldDidEndEditing(_ textField: UITextField) {
+        //General check, just reveals a placeholder text if the user dont input anything
+        if textField.text == "" {
+            textField.placeholder = "This cannot be empty."
+        }
+        
         switch textField {
         case firstNameTextField:
-            newFirstName = firstNameTextField.text!
-            firstNameTextField.endEditing(true)
-            
+            if firstNameTextField.text == "" {
+                firstNameTextField.endEditing(false)
+            } else {
+                newFirstName = firstNameTextField.text!
+                firstNameTextField.endEditing(true)
+            }
         case lastNameTextField:
-            newLastName = lastNameTextField.text!
-            lastNameTextField.endEditing(true)
+            if lastNameTextField.text == "" {
+                lastNameTextField.endEditing(false)
+            } else {
+                newLastName = lastNameTextField.text!
+                lastNameTextField.endEditing(true)
+            }
             
         case emailTextField:
-            newEmail = emailTextField.text!
-            emailTextField.endEditing(true)
+            if emailTextField.text == "" {
+                emailTextField.endEditing(false)
+            } else {
+                newEmail = emailTextField.text!
+                emailTextField.endEditing(true)
+            }
             
         case cityTextField:
-            newCity = cityTextField.text!
-            cityTextField.endEditing(true)
+            if cityTextField.text == "" {
+                cityTextField.endEditing(false)
+            } else {
+                newCity = cityTextField.text!
+                cityTextField.endEditing(true)
+            }
             
         case phoneTextField:
-            newPhone = phoneTextField.text!
-            phoneTextField.endEditing(true)
-            
+            if phoneTextField.text == "" {
+                phoneTextField.endEditing(false)
+            } else {
+                newPhone = phoneTextField.text!
+                phoneTextField.endEditing(true)
+            }
         default:
             break
         }

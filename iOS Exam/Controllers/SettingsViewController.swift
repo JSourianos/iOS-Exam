@@ -1,6 +1,6 @@
 import UIKit
 import CoreData
-//TODO: - TextFieldDelegate!
+
 class SettingsViewController: UIViewController {
     
     let userManager = UserManager()

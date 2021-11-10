@@ -45,7 +45,6 @@ class SingleContactViewController: UIViewController, UserDelegate {
             self.currentUser = userManager.fetchCurrentUserData(withId: id)
         } else {
             self.currentUser = User()
-            print("No phone number??")
         }
         
         let fullName = "\(currentUser.firstName!) \(currentUser.lastName!)"
@@ -61,6 +60,7 @@ class SingleContactViewController: UIViewController, UserDelegate {
     }
 }
 
+//MARK: - Moving View When Keyboard Appears
 
 //MARK: - Birthday functions
 extension SingleContactViewController {
@@ -112,7 +112,7 @@ extension SingleContactViewController {
     }
     
     @IBAction func showOnMapPressed(_ sender: UIButton) {
-        //Instantiate our view controller with the correct storyboard and pass over our current user
+        //Instantiate our view controller with the correct storyboard and pass over our current users id
         let singleMapViewController = self.storyboard?.instantiateViewController(identifier: "SingleMap") as! SingleMapViewController
         if let userId = currentUser.id {
             singleMapViewController.currentUserId = userId

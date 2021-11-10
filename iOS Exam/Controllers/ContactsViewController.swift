@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  iOS Exam
-//
-//  Created by Thomas Sourianos on 20/10/2021.
-//
-
 import UIKit
 import CoreData
 
@@ -23,28 +16,26 @@ class ContactsViewController: UIViewController {
         super.viewDidLoad()
         
         context = userManager.getContext()
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(ContactsCell.self, forCellReuseIdentifier: "cell")
-        
+
+        setupFRC()
+        tableViewSetup()
         checkIfUsersExist()
         
         navigationItem.title = "Kontakter"
         
         checkNumberOfTotalUsers() //REMEMBER TO REMOVE
-        deletedUserManager.fetchAllDeletedUsers() //REMEMBER TO REMOVE
     }
     
+    //TODO: - Remove this function
     func checkNumberOfTotalUsers() {
         let users: [User] = userManager.fetchAllUsers()
         print("Number of users in the database: \(users.count)")
     }
     
-    func loadSavedData() {
+    func setupFRC() {
         if fetchedResultsController == nil {
             let request = NSFetchRequest<User>(entityName: "User")
-            let sort = NSSortDescriptor(key: "phone", ascending: true)
+            let sort = NSSortDescriptor(key: "firstName", ascending: true)
             request.sortDescriptors = [sort]
             
             fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
@@ -53,7 +44,6 @@ class ContactsViewController: UIViewController {
         
         do {
             try fetchedResultsController.performFetch()
-            tableView.reloadData()
         } catch {
             print("Fetch failed")
         }
@@ -70,25 +60,24 @@ class ContactsViewController: UIViewController {
         
         do {
             tempUsers = try self.context.fetch(User.fetchRequest())
-            loadSavedData()
+
         } catch {
             print("Error fetching already existing users: \(error.localizedDescription)")
         }
-        
+
         //If there is zero or less items in the database, fetch results. If not, just reload the TableView
         if(tempUsers.count <= 0) {
             //Fetch API data when the app is loaded
             userManager.fetchJsonAndUpdateDatabase(from: url)
         } else {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            tableView.reloadData()
         }
     }
 }
 
 //MARK: - FetchedResultsController Extension
 extension ContactsViewController: NSFetchedResultsControllerDelegate {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController.sections?.count ?? 0
     }
@@ -98,38 +87,42 @@ extension ContactsViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
         switch type {
         case .insert:
-            tableView.insertRows(at: [newIndexPath!], with: .fade)
+            guard let newIndexPath = newIndexPath else { return }
+            tableView.insertRows(at: [newIndexPath], with: .fade)
+            tableView.reloadData()
         case .delete:
-            tableView.deleteRows(at: [indexPath!], with: .fade)
+            guard let indexPath = indexPath else { return }
+            tableView.deleteRows(at: [indexPath], with: .fade)
         case .update:
-            tableView.reloadRows(at: [indexPath!], with: .fade)
+            guard let indexPath = indexPath else { return }
+            tableView.reloadRows(at: [indexPath], with: .fade)
         case .move:
-            tableView.moveRow(at: indexPath!, to: newIndexPath!)
+            tableView.reloadData()
         default:
             break
         }
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        self.tableView.endUpdates()
+        tableView.endUpdates()
     }
 }
 
-//https://github.com/jrasmusson/swift-arcade/blob/master/CoreData/2-NSFetchedResultsController.md
 extension ContactsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let user = fetchedResultsController.object(at: indexPath)
         
         let fullName = "\(user.firstName ?? "") \(user.lastName ?? "")"
-        
         cell.textLabel?.text = fullName
+        
         if let imageData = user.imageDataThumbnail {
             cell.imageView?.image = UIImage(data: imageData)
         }
-        
+                
         return cell
     }
     
@@ -143,7 +136,7 @@ extension ContactsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = fetchedResultsController.sections![section]
+        guard let sectionInfo = fetchedResultsController.sections?[section] else { return 0 }
         return sectionInfo.numberOfObjects
     }
 }

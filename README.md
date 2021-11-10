@@ -16,6 +16,9 @@
 - https://stackoverflow.com/questions/30262269/custom-marker-image-on-swift-mapkit
 -- Brukte denne som en referanse til å lage en Custom Annotation til Map.
 
+- https://stackoverflow.com/questions/26070242/move-view-with-keyboard-using-swift
+-- Brukte kode fra et svar her for å gjemme keyboardet.
+
 ### Annet
 
 - Vedlagt på Wiseflow ligger versjon av Xcode og Swift, men legger det ved her også:
