@@ -65,7 +65,6 @@
 		43F446B3272BF930004EDD78 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		43F446B8273ACA11004EDD78 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		43F446B9273ACE17004EDD78 /* ContactsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCell.swift; sourceTree = "<group>"; };
-		43F446BB273C3978004EDD78 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserTests.swift; path = ../UserTests.swift; sourceTree = "<group>"; };
 		43F446C4273C3A49004EDD78 /* iOS Exam Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS Exam Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F446C6273C3A49004EDD78 /* iOS_Exam_Unit_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Exam_Unit_Tests.swift; sourceTree = "<group>"; };
 		43F446CD273C3AB8004EDD78 /* UserModelProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelProperties.swift; sourceTree = "<group>"; };
@@ -102,7 +101,6 @@
 		43AE44DC27205D1C00AA7CD3 = {
 			isa = PBXGroup;
 			children = (
-				43F446BB273C3978004EDD78 /* UserTests.swift */,
 				43F446B8273ACA11004EDD78 /* README.md */,
 				43AE44E727205D1C00AA7CD3 /* iOS Exam */,
 				43F446C5273C3A49004EDD78 /* iOS Exam Unit Tests */,

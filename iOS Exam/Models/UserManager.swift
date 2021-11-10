@@ -116,22 +116,25 @@ class UserManager {
         return currentUser
     }
     
-    func checkIfUserHasBirthday(userDate: String) -> Bool {
+    func getCurrentWeekDay() -> Int {
         //https://stackoverflow.com/questions/36861732/convert-string-to-date-in-swift
         let calendar = Calendar.current
         let weekOfYear = calendar.component(.weekOfYear, from: Date.init(timeIntervalSinceNow: 0))
         
-        let dateFormatter1 = DateFormatter()
-        dateFormatter1.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter1.dateFormat = "yyyy-MM-dd"
+        return weekOfYear
+    }
+    
+    func checkIfUserHasBirthday(userDate: String) -> Bool {
+        //https://stackoverflow.com/questions/36861732/convert-string-to-date-in-swift
+        let calendar = Calendar.current
+        let weekOfYear = getCurrentWeekDay()
         
-        let date = dateFormatter1.date(from: userDate)!
-        
-        print("date from string: \(date)")
-        let userWeek = calendar.component(.weekOfYear, from: date)
-        
-        print("Current week of the year baby: \(weekOfYear)")
-        print("Curren week from the birthday: \(userWeek)")
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+                
+        let date = dateFormatter.date(from: userDate)
+        let userWeek = calendar.component(.weekOfYear, from: date!)
         
         //If the user date is within the same week as the current, we play the animation.
         if weekOfYear == userWeek {

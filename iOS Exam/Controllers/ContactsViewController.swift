@@ -94,13 +94,13 @@ extension ContactsViewController: NSFetchedResultsControllerDelegate {
         switch type {
         case .insert:
             guard let newIndexPath = newIndexPath else { return }
-            tableView.insertRows(at: [newIndexPath], with: .fade) // add .none here, and we have no animation ( but it looks ugly)
+            tableView.insertRows(at: [newIndexPath], with: .bottom) // add .none here, and we have no animation ( but it looks ugly)
         case .delete:
             guard let indexPath = indexPath else { return }
             tableView.deleteRows(at: [indexPath], with: .fade)
         case .update:
             guard let indexPath = indexPath else { return }
-            tableView.reloadRows(at: [indexPath], with: .fade)
+            tableView.reloadRows(at: [indexPath], with: .automatic)
         case .move:
             guard let indexPath = indexPath else { return }
             guard let newIndexPath = newIndexPath else { return }
