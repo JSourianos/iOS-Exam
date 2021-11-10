@@ -1,10 +1,3 @@
-//
-//  ContactsCell.swift
-//  iOS Exam
-//
-//  Created by Thomas Sourianos on 09/11/2021.
-//
-
 import UIKit
 
 class ContactsCell: UITableViewCell {

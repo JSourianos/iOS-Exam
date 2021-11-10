@@ -1,4 +1,3 @@
-
 import MapKit
 
 class CustomPointAnnotation: MKPointAnnotation {

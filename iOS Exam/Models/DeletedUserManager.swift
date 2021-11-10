@@ -29,7 +29,7 @@ class DeletedUserManager {
             }
             
             for user in results {
-                print(user.id)
+                print(user.id ?? "0")
             }
         } catch {
             print("Error fetching all deleted users: \(error.localizedDescription)")

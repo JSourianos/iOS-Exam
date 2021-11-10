@@ -34,14 +34,16 @@ class SingleContactViewController: UIViewController, UserDelegate {
             playBirthdayAnimation()
         }
     }
-    
+}
+
+//MARK: - Populate Layout and Update Current User
+extension SingleContactViewController {
     func updateCurrentUser(with user: User) {
         return self.currentUser = user
     }
     
     func populateLayout(with currentUser: User) {
         if let id = currentUser.id {
-            print(id)
             self.currentUser = userManager.fetchCurrentUserData(withId: id)
         } else {
             self.currentUser = User()
@@ -59,8 +61,6 @@ class SingleContactViewController: UIViewController, UserDelegate {
         ageLabel.text = "Age: \(age) years old"
     }
 }
-
-//MARK: - Moving View When Keyboard Appears
 
 //MARK: - Birthday functions
 extension SingleContactViewController {
@@ -102,7 +102,7 @@ extension SingleContactViewController {
 
 //MARK: - Buttons
 extension SingleContactViewController {
-    @IBAction func deleteUserPressed(_ sender: UIButton) {        
+    @IBAction func deleteUserPressed(_ sender: UIButton) {
         if let userId = currentUser.id {
             deletedUserManager.insertDeletedUser(user: currentUser)
             userManager.deleteSingleUser(withId: userId)

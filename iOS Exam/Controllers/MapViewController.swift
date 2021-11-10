@@ -9,7 +9,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     var allUsers: [User]?
     var annotations: [MKAnnotation] = []
     
-    //TODO: - Do we need viewDidLoad?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,8 +20,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         mapView.setStartLocation(location: initialLocation, meters: 5000000)
         
         displayUserMarkers()
-        
-        navigationItem.title = "Map"
+        navigationController?.navigationItem.title = "Map"
     }
     
     
@@ -53,7 +51,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 annotations.append(customAnnotation)
             }
         }
-
+        
         mapView.addAnnotations(annotations)
     }
 }

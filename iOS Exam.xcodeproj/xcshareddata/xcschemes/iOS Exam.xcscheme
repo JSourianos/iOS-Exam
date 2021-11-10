@@ -48,6 +48,16 @@
                ReferencedContainer = "container:iOS Exam.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "43F446C3273C3A49004EDD78"
+               BuildableName = "iOS Exam Unit Tests.xctest"
+               BlueprintName = "iOS Exam Unit Tests"
+               ReferencedContainer = "container:iOS Exam.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

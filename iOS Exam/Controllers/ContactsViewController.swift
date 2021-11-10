@@ -16,7 +16,7 @@ class ContactsViewController: UIViewController {
         super.viewDidLoad()
         
         context = userManager.getContext()
-
+        
         setupFRC()
         tableViewSetup()
         checkIfUsersExist()
@@ -31,7 +31,10 @@ class ContactsViewController: UIViewController {
         let users: [User] = userManager.fetchAllUsers()
         print("Number of users in the database: \(users.count)")
     }
-    
+}
+
+//MARK: - TableView & FRC Setup Functions
+extension ContactsViewController {
     func setupFRC() {
         if fetchedResultsController == nil {
             let request = NSFetchRequest<User>(entityName: "User")
@@ -92,7 +95,6 @@ extension ContactsViewController: NSFetchedResultsControllerDelegate {
         case .insert:
             guard let newIndexPath = newIndexPath else { return }
             tableView.insertRows(at: [newIndexPath], with: .fade)
-            tableView.reloadData()
         case .delete:
             guard let indexPath = indexPath else { return }
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -100,17 +102,22 @@ extension ContactsViewController: NSFetchedResultsControllerDelegate {
             guard let indexPath = indexPath else { return }
             tableView.reloadRows(at: [indexPath], with: .fade)
         case .move:
-            tableView.reloadData()
+            guard let indexPath = indexPath else { return }
+            guard let newIndexPath = newIndexPath else { return }
+
+            tableView.moveRow(at: indexPath, to: newIndexPath)
         default:
             break
         }
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.reloadData()
         tableView.endUpdates()
     }
 }
 
+//MARK: - TableView Data Source and Delegate
 extension ContactsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)

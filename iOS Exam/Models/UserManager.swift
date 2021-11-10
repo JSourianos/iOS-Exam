@@ -327,7 +327,7 @@ class UserManager {
                 print("Error writing to database: \(error.localizedDescription)")
             }
         })
-
+        
         task.resume()
     }
 }

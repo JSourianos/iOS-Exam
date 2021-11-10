@@ -17,7 +17,7 @@ class SettingsViewController: UIViewController {
         self.context = userManager.getContext()
         seedTextField.delegate = self
         
-        navigationItem.title = "Settings"
+        navigationController?.navigationItem.title = "Settings"
     }
     
     @IBAction func settingsSaveButtonPressed(_ sender: UIButton) {

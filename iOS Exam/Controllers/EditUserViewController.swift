@@ -1,10 +1,3 @@
-//
-//  EditUserViewController.swift
-//  iOS Exam
-//
-//  Created by Thomas Sourianos on 27/10/2021.
-//
-
 import UIKit
 import CoreData
 
@@ -47,7 +40,7 @@ class EditUserViewController: UIViewController {
         
         setKeyboardNotifications()
         
-        navigationController?.title = "Edit User"
+        navigationController?.navigationItem.title = "Edit User"
     }
     
 }

@@ -13,7 +13,15 @@ class SingleMapViewController: UIViewController, MKMapViewDelegate {
         
         singleMapView.delegate = self
         currentUser = userManager.fetchCurrentUserData(withId: currentUserId)
+        pinUserToMap()
         
+        navigationController?.navigationItem.title = currentUser.firstName
+    }
+}
+
+//MARK: - Pin User to Map
+extension SingleMapViewController {
+    func pinUserToMap() {
         //User information
         let lat = Double(currentUser.latitude!)
         let lon = Double(currentUser.longitude!)
@@ -25,10 +33,10 @@ class SingleMapViewController: UIViewController, MKMapViewDelegate {
         createCustomAnnotation(imageName: currentUser.pictureThumbnail!, coordinates: CLLocationCoordinate2D(latitude: lat!, longitude: lon!), userName: userName, userInformation: userInformation, userImageData: currentUser.imageDataThumbnail!, mapView: singleMapView)
         
         singleMapView.setStartLocation(location: initialLocation, meters: 50000)
-        
-        navigationItem.title = currentUser.firstName
     }
 }
+
+
 
 //MARK: - MapView Custom Pin & MapView override
 extension SingleMapViewController {
