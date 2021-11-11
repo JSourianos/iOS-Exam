@@ -25,5 +25,8 @@
 ### Annet
 
 - Vedlagt på Wiseflow ligger versjon av Xcode og Swift, men legger det ved her også:
--- Xcode versjon: Version 13.1 (13A1030d)
--- Swift Language Version: Swift 5 
+
+...Xcode versjon: Version 13.1 (13A1030d)
+
+...Swift Language Version: Swift 5 
+
