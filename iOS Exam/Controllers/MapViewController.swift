@@ -37,8 +37,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         if let allUsers = allUsers {
             for user in allUsers {
-                let lat = Double(user.latitude!)!
-                let lon = Double(user.longitude!)!
+                
+                guard let latitude = user.latitude else {return}
+                guard let longitude = user.longitude else {return}
+                guard let lat = Double(latitude) else {return}
+                guard let lon = Double(longitude) else {return}
                 let firstName = user.firstName! //passing the ID as title since we need to fetch data if the annotation is selected.
                 
                 let customAnnotation = CustomPointAnnotation()
