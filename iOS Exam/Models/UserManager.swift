@@ -144,8 +144,6 @@ class UserManager {
         }
     }
     
-    
-    //https://newbedev.com/calculate-age-from-birth-date-using-nsdatecomponents-in-swift
     func getAgeFromDOF(date: String) -> Int32 {
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "YYYY-MM-dd"
@@ -159,7 +157,6 @@ class UserManager {
         return Int32(dateComponent.year!)
     }
     
-    //TODO: - We need to implement the second entity here, so we wont refetch the user from the API
     func deleteSingleUser(withId attribute: String) {
         let fetchRequest = NSFetchRequest<User>(entityName: "User")
         fetchRequest.fetchLimit = 1

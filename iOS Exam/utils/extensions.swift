@@ -22,28 +22,3 @@ extension UIDatePicker {
         return dateString
     }
 }
-
-//MARK: -  Image Fetch Extension
-extension UIImageView {
-    public func imageFromUrl(with urlString: String){
-        let url = URL(string: urlString)
-        DispatchQueue.global().async {            
-            let task = URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error)  in
-                if error != nil {
-                    print(error.debugDescription)
-                    return
-                }
-                
-                if let data = data {
-                    DispatchQueue.main.async {
-                        self.image = UIImage(data: data)
-                    }
-                }
-            })
-            
-            task.resume()
-        }
-    }
-}
-
-

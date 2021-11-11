@@ -36,12 +36,8 @@ extension SingleMapViewController {
     }
 }
 
-
-
 //MARK: - MapView Custom Pin & MapView override
 extension SingleMapViewController {
-    //https://stackoverflow.com/questions/30262269/custom-marker-image-on-swift-mapkit
-    //Modified this function to load custom images from urls.
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseIdentifier = "pin"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)

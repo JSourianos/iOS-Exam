@@ -19,6 +19,13 @@
 - https://stackoverflow.com/questions/26070242/move-view-with-keyboard-using-swift
 -- Brukte kode fra et svar her for å gjemme keyboardet.
 
+-     //https://newbedev.com/calculate-age-from-birth-date-using-nsdatecomponents-in-swift
+-- Brukte denne som inspo til å kalkulere alder
+
+
+## Dependencies
+- Brukte IQKeyboardManagerSwift for å håndtere flytting av View når keyboardet dukket opp. Koden for aktivere ligger i SceneDelegate
+
 ### Annet
 
 - Vedlagt på Wiseflow ligger versjon av Xcode og Swift, men legger det ved her også:

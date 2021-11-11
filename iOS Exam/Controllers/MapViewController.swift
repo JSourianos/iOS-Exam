@@ -23,11 +23,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         navigationController?.navigationItem.title = "Map"
     }
     
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-        //mapView.removeAnnotations(annotations)
+        mapView.removeAnnotations(annotations)
         displayUserMarkers()
     }
     
@@ -56,11 +55,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
 }
 
-
 //MARK: - MapView Custom Pin
 extension MapViewController {
-    //https://stackoverflow.com/questions/38274115/ios-swift-mapkit-custom-annotation
-    //Modified this function to load custom images from urls.
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         let reuseIdentifier = "pin"
@@ -86,7 +82,6 @@ extension MapViewController {
         
         return annotationView
     }
-    //TODO: - Sjekk om vi heller skal ha all koden under her! Da loader hvertfall mappet først.
     
     //What to happen when we click a annotation
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -106,20 +101,4 @@ extension MKMapView {
         let mapCoordinates = MKCoordinateRegion(center: location, latitudinalMeters: meters, longitudinalMeters: meters)
         self.setRegion(mapCoordinates, animated: true)
     }
-}
-
-//https://stackoverflow.com/questions/24056205/how-to-use-background-thread-in-swift?rq=1
-//MARK: - DispatchQueue Extension
-extension DispatchQueue {
-    static func background(delay: Double = 0.0, background: (()->Void)? = nil, completion: (() -> Void)? = nil) {
-        DispatchQueue.global(qos: .background).async {
-            background?()
-            if let completion = completion {
-                DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
-                    completion()
-                })
-            }
-        }
-    }
-    
 }

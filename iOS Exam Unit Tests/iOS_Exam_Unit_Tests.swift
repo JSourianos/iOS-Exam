@@ -34,12 +34,4 @@ class iOS_Exam_Unit_Tests: XCTestCase {
         let hasBirthday = userManager.checkIfUserHasBirthday(userDate: "2021/01/01")
         XCTAssertFalse(hasBirthday)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

@@ -94,7 +94,7 @@ extension ContactsViewController: NSFetchedResultsControllerDelegate {
         switch type {
         case .insert:
             guard let newIndexPath = newIndexPath else { return }
-            tableView.insertRows(at: [newIndexPath], with: .bottom) // add .none here, and we have no animation ( but it looks ugly)
+            tableView.insertRows(at: [newIndexPath], with: .bottom)
         case .delete:
             guard let indexPath = indexPath else { return }
             tableView.deleteRows(at: [indexPath], with: .fade)
