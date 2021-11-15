@@ -49,15 +49,17 @@ extension SingleContactViewController {
             self.currentUser = User()
         }
         
-        let fullName = "\(currentUser.firstName!) \(currentUser.lastName!)"
+        guard let firstName = currentUser.firstName else {return}
+        guard let lastName = currentUser.lastName else {return}
+        let fullName = "\(firstName) \(lastName)"
         
         let age: Int32 = currentUser.age
         userImageView.image = UIImage(data: currentUser.imageDataLarge!)
         fullNameLabel.text = fullName
-        dateLabel.text = currentUser.birthdate!
-        cityLabel.text = currentUser.city!
-        stateLabel.text = currentUser.state!
-        emailLabel.text = currentUser.email ?? "Unavailable"
+        dateLabel.text = currentUser.birthdate
+        cityLabel.text = "Location: \(currentUser.city!) \(currentUser.state!)"
+        stateLabel.text = "Phone number: \(currentUser.phone!)"
+        emailLabel.text = "\(currentUser.email!)"
         ageLabel.text = "Age: \(age) years old"
     }
 }

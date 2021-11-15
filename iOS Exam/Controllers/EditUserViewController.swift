@@ -38,8 +38,6 @@ class EditUserViewController: UIViewController {
         
         addUserValuesToTextField(from: currentUser)
         
-        //setKeyboardNotifications()
-        
         navigationController?.navigationItem.title = "Edit User"
     }
 }

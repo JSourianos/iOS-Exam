@@ -20,7 +20,7 @@
 
 
 ## Dependencies
-- Brukte IQKeyboardManagerSwift for å håndtere flytting av View når keyboardet dukket opp. Koden for aktivere ligger i SceneDelegate
+- Brukte IQKeyboardManagerSwift for å håndtere flytting av View når keyboardet dukket opp. Koden for å aktivere ligger i SceneDelegate
 
 ## Annet
 
@@ -28,5 +28,5 @@
 
 - Xcode versjon: Version 13.1 (13A1030d)
 
-- Swift Language Version: Swift 5 
+- Swift Language Version: Swift 5
 

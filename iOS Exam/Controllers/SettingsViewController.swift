@@ -26,7 +26,7 @@ class SettingsViewController: UIViewController {
         } else {
             userSeed = "android" //defaulting the value incase the user dont input anything
         }
-        
+
         url = "https://randomuser.me/api?results=100&seed=\(userSeed)&nat=no"
         print("New seed: \(userSeed)")
         
@@ -45,5 +45,6 @@ extension SettingsViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.endEditing(true)
+        
     }
 }

@@ -196,9 +196,20 @@ class UserManager {
         return users
     }
     
-    func fetchJsonWithReturn(from url: String) -> [Result] {
+    func fetchJsonWithReturn(from stringUrl: String) -> [Result] {
         var results: [Result] = []
-        let url = URL(string: url)
+        //This allows us to use ÆØÅ in the URL
+        let encodedUrl = stringUrl.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
+        let url = URL(string: encodedUrl!)
+        
+        /*
+        TODO: - FIX ÆØÅ ENCODING
+        if let encoded = url.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),
+           let let url = URL(string: encoded)
+        {
+            print(url)
+        }
+         */
         
         let task = URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
             
@@ -237,10 +248,12 @@ class UserManager {
         return results
     }
     
-    func fetchJsonAndUpdateDatabase(from url: String) {
+    //TODO: - This could be refactored, saving to DB should be a separate method.
+    func fetchJsonAndUpdateDatabase(from stringUrl: String) {
         var results: [Result] = []
-        let url = URL(string: url)
-        
+        let encodedUrl = stringUrl.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
+        let url = URL(string: encodedUrl!)
+
         let task = URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
             
             //Error handling
