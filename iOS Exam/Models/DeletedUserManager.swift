@@ -16,9 +16,10 @@ class DeletedUserManager {
     }
     //TODO: - Check if this is needed.
     //Mostly for testing purposes
-    func fetchAllDeletedUsers() {
+    func fetchAllDeletedUsers() -> [DeletedUser] {
+        var results: [DeletedUser] = [DeletedUser]()
         do {
-            let results: [DeletedUser] = try context.fetch(DeletedUser.fetchRequest())
+            results = try context.fetch(DeletedUser.fetchRequest())
             
             if results.count == 0 {
                 print("no deleted users. ")
@@ -31,8 +32,11 @@ class DeletedUserManager {
             for user in results {
                 print(user.id ?? "0")
             }
+            
         } catch {
             print("Error fetching all deleted users: \(error.localizedDescription)")
         }
+        
+        return results
     }
 }

@@ -27,11 +27,16 @@ class SingleContactViewController: UIViewController, UserDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        populateLayout(with: currentUser)
         
-        let birthWeek = userManager.checkIfUserHasBirthday(userDate: currentUser.birthdate!)
-        if birthWeek {
-            playBirthdayAnimation()
+        if let birthdate = currentUser.birthdate {
+            populateLayout(with: currentUser)
+
+            let birthWeek = userManager.checkIfUserHasBirthday(userDate: currentUser.birthdate!)
+            if birthWeek {
+                playBirthdayAnimation()
+            }
+        } else {
+            navigationController?.popToRootViewController(animated: true)
         }
     }
 }
@@ -56,7 +61,7 @@ extension SingleContactViewController {
         let age: Int32 = currentUser.age
         userImageView.image = UIImage(data: currentUser.imageDataLarge!)
         fullNameLabel.text = fullName
-        dateLabel.text = currentUser.birthdate
+        dateLabel.text = currentUser.birthdate ?? ""
         cityLabel.text = "Location: \(currentUser.city!) \(currentUser.state!)"
         stateLabel.text = "Phone number: \(currentUser.phone!)"
         emailLabel.text = "\(currentUser.email!)"
@@ -66,7 +71,6 @@ extension SingleContactViewController {
 
 //MARK: - Birthday functions
 extension SingleContactViewController {
-    
     func createRainingEmoji(with emoji: String){
         let randomXPosition = Double.random(in: 0...400)
         let randomDelay = Double.random(in: 0...1.5)

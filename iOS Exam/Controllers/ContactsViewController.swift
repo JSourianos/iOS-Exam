@@ -32,7 +32,7 @@ class ContactsViewController: UIViewController {
         print("Number of users in the database: \(users.count)")
     }
 }
-
+//TODO: - Add loading view?
 //MARK: - TableView & FRC Setup Functions
 extension ContactsViewController {
     func setupFRC() {
@@ -94,7 +94,7 @@ extension ContactsViewController: NSFetchedResultsControllerDelegate {
         switch type {
         case .insert:
             guard let newIndexPath = newIndexPath else { return }
-            tableView.insertRows(at: [newIndexPath], with: .bottom)
+            tableView.insertRows(at: [newIndexPath], with: .fade)
         case .delete:
             guard let indexPath = indexPath else { return }
             tableView.deleteRows(at: [indexPath], with: .fade)

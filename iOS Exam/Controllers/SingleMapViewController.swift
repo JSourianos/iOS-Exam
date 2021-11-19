@@ -23,14 +23,14 @@ class SingleMapViewController: UIViewController, MKMapViewDelegate {
 extension SingleMapViewController {
     func pinUserToMap() {
         //User information
-        let lat = Double(currentUser.latitude!)
-        let lon = Double(currentUser.longitude!)
+        guard let lat = Double(currentUser.latitude!) else {return}
+        guard let lon = Double(currentUser.longitude!) else {return}
         let userName = "\(currentUser.firstName!) \(currentUser.lastName!)"
         let userInformation = "\(currentUser.city!), \(currentUser.state!)"
         
-        let initialLocation = CLLocationCoordinate2D(latitude: lat!, longitude: lon!)
+        let initialLocation = CLLocationCoordinate2D(latitude: lat, longitude: lon)
         
-        createCustomAnnotation(imageName: currentUser.pictureThumbnail!, coordinates: CLLocationCoordinate2D(latitude: lat!, longitude: lon!), userName: userName, userInformation: userInformation, userImageData: currentUser.imageDataThumbnail!, mapView: singleMapView)
+        createCustomAnnotation(imageName: currentUser.pictureThumbnail!, coordinates: CLLocationCoordinate2D(latitude: lat, longitude: lon), userName: userName, userInformation: userInformation, userImageData: currentUser.imageDataThumbnail!, mapView: singleMapView)
         
         singleMapView.setStartLocation(location: initialLocation, meters: 50000)
     }
